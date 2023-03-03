@@ -34,22 +34,23 @@
             <h3 class="mb-6">Sign Up and Start Learning!</h3>
 
             <!-- Form Register -->
-            <form class="mb-5">
+            <form class="mb-5" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
 
                 <!-- Username -->
                 <div class="form-group mb-5">
                     <label for="modalSignupUsername1">
                         Username
                     </label>
-                    <input type="text" class="form-control" id="modalSignupUsername1" placeholder="John">
+                    <input type="text" class="form-control" id="modalSignupUsername1" placeholder="John" name="username" required>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group mb-5">
                     <label for="modalSignupEmail1">
-                        Username or Email
+                        Email
                     </label>
-                    <input type="email" class="form-control" id="modalSignupEmail1" placeholder="johndoe@creativelayers.com">
+                    <input type="email" class="form-control" id="modalSignupEmail1" placeholder="johndoe@creativelayers.com" name="email" required>
                 </div>
 
                 <!-- Password -->
@@ -57,7 +58,15 @@
                     <label for="modalSignupPassword3">
                         Password
                     </label>
-                    <input type="password" class="form-control" id="modalSignupPassword3" placeholder="**********">
+                    <input type="password" class="form-control" id="modalSignupPassword3" placeholder="**********" name="password1" required>
+                </div>
+
+                <!-- Password2 -->
+                <div class="form-group mb-5">
+                    <label for="password2">
+                        Confirm password
+                    </label>
+                    <input type="password" class="form-control" id="password2" placeholder="**********" name="password2" required>
                 </div>
 
                 <!-- Submit -->
@@ -69,7 +78,7 @@
 
             <!-- Text -->
             <p class="mb-0 font-size-sm text-center">
-                Already have an account? <a class="text-underline" href="login.html">Log In</a>
+                Already have an account? <a class="text-underline" href="{% url 'login' %}">Log In</a>
             </p>
         </div>
     </div>

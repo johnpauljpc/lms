@@ -1,8 +1,52 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-def loginView(request):
-    return render(request, 'accounts/login.html')
 
 def registrationView(request):
+    # user = User.objects.all()
+
+    if request.method == 'POST':
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        email = request.POST['email']
+        username = request.POST['username']
+        print('**************===========================')
+        print(request.POST)
+
+        #check if username exists
+        if User.objects.filter(username = username).exists():
+            messages.info(request, f"the username <b>{username}</b> already exists!")
+            return redirect('register')
+        #check if email already exists
+
+        if User.objects.filter(email = email ).exists():
+            messages.info(request, f'the email: <b>{email}</b> has been taken already!')
+            return redirect('register')
+        
+        if password1 != password2:
+            messages.info(request, 'password does not match')
+            return redirect('register')
+
+        user = User.objects.create_user(username = username, email = email)
+        user.set_password(password1)
+        
+        user.save()
+      
+
     return render(request, 'accounts/register.html')
+
+
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username = username, password = password)
+        if user:
+            login(request, user)
+            return redirect('home')
+
+    return render(request, 'accounts/login.html')
