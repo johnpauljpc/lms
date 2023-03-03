@@ -18,12 +18,12 @@ def registrationView(request):
 
         #check if username exists
         if User.objects.filter(username = username).exists():
-            messages.info(request, f"the username <b>{username}</b> already exists!")
+            messages.warning(request, f"the username <b>{username}</b> already exists!")
             return redirect('register')
         #check if email already exists
 
         if User.objects.filter(email = email ).exists():
-            messages.info(request, f'the email: <b>{email}</b> has been taken already!')
+            messages.warning(request, f'the email: <b>{email}</b> has been taken already!')
             return redirect('register')
         
         if password1 != password2:
@@ -32,8 +32,9 @@ def registrationView(request):
 
         user = User.objects.create_user(username = username, email = email)
         user.set_password(password1)
-        
         user.save()
+        messages.success(request, f'welcome  <b>{user.username}! You can now login')
+        return redirect('login')
       
 
     return render(request, 'accounts/register.html')
