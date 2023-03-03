@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from .emailBackend import EmailBackend
 # Create your views here.
 
 def registrationView(request):
@@ -45,7 +45,7 @@ def loginView(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(username = username, password = password)
+        user = EmailBackend.authenticate(request, username=username, password=password)
         if user:
             login(request, user)
             return redirect('home')
