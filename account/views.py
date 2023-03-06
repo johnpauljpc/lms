@@ -53,7 +53,7 @@ def loginView(request):
     return render(request, 'accounts/login.html')
 
 def logoutView(request):
-    if request.method == 'POST':
+    if (request.method == 'POST' ):
         logout(request)
         messages.info(request, 'You have logged out')
         return redirect('home')
