@@ -72,30 +72,30 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown dropdown-full-width ">
-                        <a class="nav-link px-xl-4 text-gigas"  href="">
+                        <a class="nav-link px-xl-4 text-gigas"  href="{% url 'home' %}">
                             <span>Home</span>
                         </a>
 
                     </li>
                     <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-gigas"  href="">
+                        <a class="nav-link text-gigas"  href="{% url 'about-us' %}">
                             About
                         </a>
 
                     </li>
                     <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-gigas"  href="">
+                        <a class="nav-link text-gigas"  href="{% url 'contact-us' %}">
                             Contact Us
                         </a>
 
                     </li>
                     <li class="nav-item dropdown dropdown-full-width">
-                        <a class="nav-link text-gigas"  href="">
+                        <a class="nav-link text-gigas"  href="{% url 'single-course' %}">
                             My Courses
                         </a>
 
                     </li>
-                     {% if user.is_authenticated and user.first_name == '' %}
+                     {% if user.is_authenticated %}
                      <li class="nav-item dropdown border-0 px-1 px-md-3">
                          <a class="nav-link dropdown-toggle" id="user" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
                            Welcome , {{user.username}}
@@ -103,8 +103,8 @@
 
                         <ul class="dropdown-menu border-xl shadow-none" aria-labelledby="user">
                             <li class="dropdown-item">
-                                <a class="dropdown-link active" href="">
-                                    Account
+                                <a class="dropdown-link active" href="{% url 'profile' %}">
+                                    Profile
                                 </a>
                             </li>
                             <li class="dropdown-item">

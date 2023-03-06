@@ -143,7 +143,7 @@ def passwordResetConfirmation(request, uidb64, token):
             if form.is_valid():
                 form.save()
                 messages.success(request, "Your password has been set. You may go ahead and <b>log in </b> now.")
-                return redirect('/')
+                return redirect('login')
             else:
                 for error in list(form.errors.values()):
                     messages.error(request, error)
@@ -168,3 +168,26 @@ def resetPasswordConfirm(request):
 
 def resetPasswordComplete(request):
     pass
+
+
+def profile(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user_id = request.user.id
+
+        user = User.objects.get(id=user_id)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.username = username
+        user.email = email
+
+        if password != None and password != "":
+            user.set_password(password)
+        user.save()
+        messages.success(request,'Profile Are Successfully Updated. ')
+        return redirect('profile')
+    return render(request, "accounts/profile.html")
