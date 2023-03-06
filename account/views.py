@@ -60,6 +60,7 @@ def loginView(request):
         user = EmailBackend.authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            messages.info(request, f"welcome {user}")
             return redirect('home')
 
     return render(request, 'accounts/login.html')
@@ -103,9 +104,10 @@ def resetPassword(request):
                         </p>
                         """
                     )
+                    return redirect('reset-password-done')
                 else:
                     messages.error(request, "Problem sending reset password email, <b>SERVER PROBLEM</b>")
-
+            messages.warning(request, f"{user_email} is not assosciated to any registered User")
             return redirect('/')
         
 
@@ -159,8 +161,7 @@ def passwordResetConfirmation(request, uidb64, token):
 
 
 def resetPasswordDone(request):
-    pass
-
+    return render (request, "accounts/password_reset_done.html")
 def resetPasswordConfirm(request):
     pass
 
