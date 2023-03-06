@@ -154,3 +154,9 @@ EMAIL_USE_TLS = True
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+from django.contrib import messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
