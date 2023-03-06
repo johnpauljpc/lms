@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .emailBackend import EmailBackend
+from django.contrib.auth.forms import PasswordResetForm
 # Create your views here.
 
 def registrationView(request):
@@ -53,9 +54,23 @@ def loginView(request):
     return render(request, 'accounts/login.html')
 
 def logoutView(request):
-    if (request.method == 'POST' ):
+    if (request.method == 'POST' or request.method == 'GET'):
         logout(request)
         messages.info(request, 'You have logged out')
         return redirect('home')
     messages.info(request, 'You have NOT logged out')
     return redirect('/')
+
+def resetPassword(request):
+    pass
+
+
+def resetPasswordDone(request):
+    pass
+
+def resetPasswordConfirm(request):
+    pass
+
+
+def resetPasswordComplete(request):
+    pass
