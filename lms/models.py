@@ -13,7 +13,7 @@ class Categories(models.Model):
 
 
 class Author(models.Model):
-    author_profile = models.ImageField(upload_to="Media/author")
+    author_profile = models.ImageField(upload_to="Images/authors")
     name = models.CharField(max_length=100, null=True)
     about_author = models.TextField()
 
@@ -27,7 +27,7 @@ class Course(models.Model):
         ('DRAFT', 'DRAFT'),
     )
 
-    featured_image = models.ImageField(upload_to="Media/featured_img",null=True)
+    featured_image = models.ImageField(upload_to="Images/featured_img",null=True)
     featured_video = models.CharField(max_length=300,null=True)
     title = models.CharField(max_length=500)
     created_at = models.DateField(auto_now_add=True)
