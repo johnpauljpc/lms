@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from .models import Categories
+from .models import Categories, Course
 # Create your views here.
 
 def index(request):
-    categories = Categories.objects.all()[:4]
+    categories = Categories.objects.all().order_by('-id')[:4]
+    courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')[:8]
     context = {
-        'categories':categories
+        'categories':categories,
+        'courses':courses
     }
     
     return render(request, "lms/index.html", context)
