@@ -1,8 +1,14 @@
 from django.shortcuts import render
-
+from .models import Categories
 # Create your views here.
+
 def index(request):
-    return render(request, "lms/index.html")
+    categories = Categories.objects.all()[:4]
+    context = {
+        'categories':categories
+    }
+    
+    return render(request, "lms/index.html", context)
 
 
 def singleCourse(request):
