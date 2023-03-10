@@ -14,7 +14,12 @@ def index(request):
 
 
 def singleCourse(request):
-    return render(request, "lms/single_course.html")
+    categories = Categories.get_all_categories(Categories)
+    
+    context = {
+        'categories':categories
+    }
+    return render(request, "lms/single_course.html", context)
 
 def contactUs(request):
     return render(request, 'lms/contact_us.html')

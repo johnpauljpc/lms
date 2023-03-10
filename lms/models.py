@@ -8,6 +8,9 @@ class Categories(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_all_categories(self):
+        return Categories.objects.all().order_by('id')
 
 
 
