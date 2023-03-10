@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Categories, Course
+from .models import Categories, Course, Level
 # Create your views here.
 
 def index(request):
@@ -15,10 +15,13 @@ def index(request):
 
 def singleCourse(request):
     categories = Categories.get_all_categories(Categories)
+    level = Level.objects.all()
     
     context = {
-        'categories':categories
+        'categories':categories,
+        'level':level
     }
+    print(f'LEVELS>>>>>>>> {level}')
     return render(request, "lms/single_course.html", context)
 
 def contactUs(request):

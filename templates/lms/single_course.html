@@ -161,18 +161,15 @@
 
                         <div id="coursefiltercollapse4" class="collapse show mt-n2 px-6 pb-6" aria-labelledby="coursefilter4" data-parent="#courseSidebar">
                             <ul class="list-unstyled list-group list-checkbox">
+                                {% for lvl in level %}
+
                                 <li class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="levelcustomcheck1">
-                                    <label class="custom-control-label font-size-base" for="levelcustomcheck1">Beginner (03)</label>
+                                    <input type="checkbox" class="custom-control-input" id="level-{{lvl.id}}">
+                                    <label class="custom-control-label font-size-base" for="level-{{lvl.id}}">{{lvl}} ({{lvl.course_set.all.count}})</label>
                                 </li>
-                                <li class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="levelcustomcheck2">
-                                    <label class="custom-control-label font-size-base" for="levelcustomcheck2">Intermediate (15)</label>
-                                </li>
-                                <li class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="levelcustomcheck3">
-                                    <label class="custom-control-label font-size-base" for="levelcustomcheck3">Advanced (126)</label>
-                                </li>
+
+                                {% endfor %}
+                                
                             </ul>
                         </div>
                     </div>
