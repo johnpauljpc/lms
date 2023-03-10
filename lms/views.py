@@ -16,10 +16,14 @@ def index(request):
 def singleCourse(request):
     categories = Categories.get_all_categories(Categories)
     level = Level.objects.all()
+    courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')
     
     context = {
         'categories':categories,
-        'level':level
+        'level':level,
+        'courses':courses
+        
+
     }
     print(f'LEVELS>>>>>>>> {level}')
     return render(request, "lms/single_course.html", context)
