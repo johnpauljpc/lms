@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import Categories, Course, Level
+
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
@@ -34,3 +37,30 @@ def contactUs(request):
 
 def aboutUs(request):
     return render(request, 'lms/about-us.html')
+
+
+def filter_data(request):
+    categories = request.GET.getlist('category[]')
+    level = request.GET.getlist('level[]')
+    price = request.GET.getlist('price[]')
+    print(">>>>>>>>>>>>>>>>>",categories)
+
+
+    # if price == ['priceFree']:
+    #    course = Course.objects.filter(price=0)
+    # elif price == ['pricePaid']:
+    #    course = Course.objects.filter(price__gte=1)
+    # elif price == ['priceAll']:
+    #    course = Course.objects.all()
+    # elif categories:
+    #    course = Course.objects.filter(category__id__in=categories).order_by('-id')
+    # elif level:
+    #    course = Course.objects.filter(level__id__in = level).order_by('-id')
+    # else:
+    #    course = Course.objects.all().order_by('-id')
+
+
+    t = render_to_string('ajax/course.html')
+
+    return JsonResponse({'data': t})
+   
