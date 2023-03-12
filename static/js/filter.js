@@ -12,7 +12,8 @@ $(document).ready(function(){
 		});
 
 		$.ajax({
-			url:"{% url 'filter-data' %}",
+			type:"GET",
+			url: "/filter-data/",
 			data:filter_object,
 			dataType:'json',
 			success:function(res){

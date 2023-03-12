@@ -28,7 +28,7 @@ def singleCourse(request):
         
 
     }
-    print(f'LEVELS>>>>>>>> {level}')
+    
     return render(request, "lms/single_course.html", context)
 
 def contactUs(request):
@@ -43,24 +43,24 @@ def filter_data(request):
     categories = request.GET.getlist('category[]')
     level = request.GET.getlist('level[]')
     price = request.GET.getlist('price[]')
-    print(">>>>>>>>>>>>>>>>>",categories)
+    print(f'LEVELS>>>>>>>> {level}')
 
 
-    # if price == ['priceFree']:
-    #    course = Course.objects.filter(price=0)
-    # elif price == ['pricePaid']:
-    #    course = Course.objects.filter(price__gte=1)
-    # elif price == ['priceAll']:
-    #    course = Course.objects.all()
-    # elif categories:
-    #    course = Course.objects.filter(category__id__in=categories).order_by('-id')
-    # elif level:
-    #    course = Course.objects.filter(level__id__in = level).order_by('-id')
-    # else:
-    #    course = Course.objects.all().order_by('-id')
+    if price == ['priceFree']:
+       course = Course.objects.filter(price=0)
+    elif price == ['pricePaid']:
+       course = Course.objects.filter(price__gte=1)
+    elif price == ['priceAll']:
+       course = Course.objects.all()
+    elif categories:
+       course = Course.objects.filter(category__id__in=categories).order_by('-id')
+    elif level:
+       course = Course.objects.filter(level__id__in = level).order_by('-id')
+    else:
+       course = Course.objects.all().order_by('-id')
 
 
-    t = render_to_string('ajax/course.html')
+    t = render_to_string('ajax/course.html', {'course': course})
 
     return JsonResponse({'data': t})
    

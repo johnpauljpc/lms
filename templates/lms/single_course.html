@@ -86,7 +86,7 @@
                                {% for cat in categories %}
 
                                <li class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input filter-checkbox" id="category-{{cat.id}}" data-filter="category" value="{{cat.id}}" name="category">
+                                <input type="checkbox" class="custom-control-input filter-checkbox" id="category-{{cat.id}}" data-filter="category" value="{{cat.id}}" >
                                 <label class="custom-control-label font-size-base" for="category-{{cat.id}}">{{cat.name}} ({{cat.course_set.all.count}})</label>
                             </li>
 
@@ -162,11 +162,11 @@
 
                         <div id="coursefiltercollapse4" class="collapse show mt-n2 px-6 pb-6" aria-labelledby="coursefilter4" data-parent="#courseSidebar">
                             <ul class="list-unstyled list-group list-checkbox">
-                                {% for lvl in level %}
+                                {% for i in level %}
 
                                 <li class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="level-{{lvl.id}}">
-                                    <label class="custom-control-label font-size-base" for="level-{{lvl.id}}">{{lvl}} ({{lvl.course_set.all.count}})</label>
+                                    <input type="checkbox" class="custom-control-input filter-checkbox" id="level-{{i.id}}"  value="{{i.id}}" data-filter="level">
+                                    <label class="custom-control-label font-size-base" for="level-{{i.id}}">{{i}} ({{i.course_set.all.count}})</label>
                                 </li>
 
                                 {% endfor %}
