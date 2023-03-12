@@ -20,11 +20,16 @@ def singleCourse(request):
     categories = Categories.get_all_categories(Categories)
     level = Level.objects.all()
     courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')
+    freeCourses = Course.objects.filter(price = 0).count()
+    paidCourses = Course.objects.filter(price__gte = 1)
+    print('paidCourses >>>>>>>>>>>>>>>>> ', paidCourses)
     
     context = {
         'categories':categories,
         'level':level,
-        'courses':courses
+        'courses':courses,
+        'freeCourses':freeCourses,
+        'paidCourses': paidCourses
         
 
     }
@@ -48,6 +53,7 @@ def filter_data(request):
 
     if price == ['priceFree']:
        course = Course.objects.filter(price=0)
+      
     elif price == ['pricePaid']:
        course = Course.objects.filter(price__gte=1)
     elif price == ['priceAll']:
@@ -59,8 +65,9 @@ def filter_data(request):
     else:
        course = Course.objects.all().order_by('-id')
 
-
-    t = render_to_string('ajax/course.html', {'course': course})
+    number_courses = course.count()
+    print (">>>>>>>>>>>>>>   ", number_courses)
+    t = render_to_string('ajax/course.html', context = {'course': course, 'number_courses':number_courses})
 
     return JsonResponse({'data': t})
    

@@ -1,6 +1,13 @@
 {% load price_discount_tags %}
 
 
+{% if number_courses >= 1 %}
+            <p class="mb-lg-0">We found <span class="text-dark">{{number_courses}} courses</span> available for you</p>
+{% endif %}
+
+{% if course|length < 1 %}
+<h1 class="text-center" style="text-align: center;">No course found</h1>
+{% else %}
 {% for c in course %}
 <div class="col-md pb-4 pb-md-7">
     <!-- Card -->
@@ -110,3 +117,4 @@
     </div>
 </div>
 {% endfor %}
+{% endif %}
