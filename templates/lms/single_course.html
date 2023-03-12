@@ -309,7 +309,12 @@
                                 </a>
 
                                 <span class="badge sk-fade-bottom badge-lg badge-primary badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
+                                    {% if c.price == 0 %}
+                                    <span class="text-white text-uppercase fw-bold font-size-xs">Discount 100% off</span>
+                                    {% else %}
                                     <span class="text-white text-uppercase fw-bold font-size-xs">Discount {{c.discount}}% off</span>
+                                    {% endif %}
+                                    
                                 </span>
                             </div>
 
@@ -369,10 +374,18 @@
                                             </ul>
                                         </div>
 
+                                       
                                         <div class="col-auto px-2 text-right">
+                                        {% if c.price == 0 %}
+                                            <del class="font-size-sm text-white">0</del>
+                                            <ins class=" badge badge-lg badge-primary font-size-sm mb-0 d-block mb-lg-n1">Free</ins>
+                                        
+                                        {% else %}
                                             <del class="font-size-sm">${% discount_calculation c.price c.discount %}</del>
                                             <ins class="h4 mb-0 d-block mb-lg-n1">${{c.price}}</ins>
+                                            {% endif%}
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
