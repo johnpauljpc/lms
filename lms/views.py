@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Categories, Course, Level
 
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from django.db.models import Q
+
 # Create your views here.
 
 def index(request):
     categories = Categories.objects.all().order_by('-id')[:4]
     courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')[:8]
+    
     context = {
         'categories':categories,
         'courses':courses
@@ -71,3 +74,11 @@ def filter_data(request):
 
     return JsonResponse({'data': t})
    
+
+def searchField(request):
+   q = request.GET['search-query']
+   courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) )
+   print('>>>>>>>>>>>>>>>>>>>>> SS  ', courses)
+   context = {'query': q, 'courses':courses}
+   return render(request, 'search/search.html', context=context)
+#  return redirect(request.META.get("HTTP_REFERER", "/")
