@@ -77,7 +77,7 @@ def filter_data(request):
 
 def searchField(request):
    q = request.GET['search-query']
-   courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) )
+   courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) | Q(category__name__icontains=q))
    print('>>>>>>>>>>>>>>>>>>>>> SS  ', courses)
    context = {'query': q, 'courses':courses}
    return render(request, 'search/search.html', context=context)
