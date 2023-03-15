@@ -2,6 +2,7 @@ from django.db import models
 # from PIL import Image
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from django.urls import reverse
 
 # Create your models here.
 class Categories(models.Model):
@@ -54,6 +55,9 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('course-detail', kwargs={'slug':self.slug})
     
 
 def create_slug(instance, new_slug=None):
