@@ -40,7 +40,13 @@ def Courses(request):
     return render(request, "lms/single_course.html", context)
 
 def courseDetail(request, slug):
-   return render(request, 'lms/course-details.html')
+   c = Course.objects.filter(slug=slug).first()
+   context = {
+      'c':c
+   }
+   print('>>>>>>>>>>>>>>>                             >>')
+   print(c)
+   return render(request, 'lms/course-details.html', context)
 
 
 
