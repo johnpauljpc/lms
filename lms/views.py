@@ -8,7 +8,7 @@ from django.db.models import Q
 # Create your views here.
 
 def index(request):
-    categories = Categories.objects.all().order_by('-id')[:4]
+    categories = Categories.objects.all().order_by('-id')
     courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')[:8]
     
     context = {
@@ -55,11 +55,19 @@ def courseDetail(request, slug):
 
 
 def contactUs(request):
-    return render(request, 'lms/contact_us.html')
+    categories = Categories.get_all_categories(Categories)
+    context = {
+       'categories':categories,
+    }
+    return render(request, 'lms/contact_us.html', context)
 
 
 def aboutUs(request):
-    return render(request, 'lms/about-us.html')
+    categories = Categories.get_all_categories(Categories)
+    context = {
+       'categories':categories,
+    }
+    return render(request, 'lms/about-us.html', context)
 
 
 def filter_data(request):
@@ -99,4 +107,8 @@ def searchField(request):
 #  return redirect(request.META.get("HTTP_REFERER", "/")
 
 def pageNotFound(request):
-   return render(request, 'error/404.html')
+   categories = Categories.get_all_categories(Categories)
+   context = {
+       'categories':categories,
+    }
+   return render(request, 'error/404.html', context)
