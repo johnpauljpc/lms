@@ -40,12 +40,16 @@ def Courses(request):
     return render(request, "lms/single_course.html", context)
 
 def courseDetail(request, slug):
-   c = Course.objects.filter(slug=slug).first()
+   course = Course.objects.filter(slug=slug)
+
+   if course.exists():
+      course = course.first()
+   else:
+      return redirect('404')
    context = {
-      'c':c
+      'course':course
    }
-   print('>>>>>>>>>>>>>>>                             >>')
-   print(c)
+   
    return render(request, 'lms/course-details.html', context)
 
 
@@ -93,3 +97,6 @@ def searchField(request):
    context = {'query': q, 'courses':courses}
    return render(request, 'search/search.html', context=context)
 #  return redirect(request.META.get("HTTP_REFERER", "/")
+
+def pageNotFound(request):
+   return render(request, 'error/404.html')
