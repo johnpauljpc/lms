@@ -77,3 +77,19 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = create_slug(instance)
 
 pre_save.connect(pre_save_post_receiver, Course)
+
+
+class things_you_wil_learn(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    points = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.points
+    
+
+class Course_Requirements(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    points = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.points
