@@ -85,6 +85,8 @@ class things_you_wil_learn(models.Model):
 
     def __str__(self) -> str:
         return self.points
+    class Meta:
+        verbose_name_plural = "things you wil learn"
     
 
 class Course_Requirements(models.Model):
@@ -93,3 +95,6 @@ class Course_Requirements(models.Model):
 
     def __str__(self) -> str:
         return self.points
+    
+    class Meta:
+        verbose_name_plural = "Course Requirement"
