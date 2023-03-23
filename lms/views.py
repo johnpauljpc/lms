@@ -41,13 +41,15 @@ def Courses(request):
 
 def courseDetail(request, slug):
    course = Course.objects.filter(slug=slug)
+   categories = Categories.get_all_categories(Categories)
 
    if course.exists():
       course = course.first()
    else:
       return redirect('404')
    context = {
-      'course':course
+      'course':course,
+      'categories':categories,
    }
    
    return render(request, 'lms/course-details.html', context)
@@ -100,9 +102,10 @@ def filter_data(request):
 
 def searchField(request):
    q = request.GET['search-query']
+   
    courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) | Q(category__name__icontains=q))
    print('>>>>>>>>>>>>>>>>>>>>> SS  ', courses)
-   context = {'query': q, 'courses':courses}
+   context = {'query': q, 'courses':courses, 'categories':categories,}
    return render(request, 'search/search.html', context=context)
 #  return redirect(request.META.get("HTTP_REFERER", "/")
 

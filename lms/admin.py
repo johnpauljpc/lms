@@ -9,8 +9,14 @@ class things2learnInline(admin.TabularInline):
 class courseRequirementsInline(admin.TabularInline):
     model = Course_Requirements
 
+class Lesson_Inline(admin.TabularInline):
+    model = Lesson
+
+class Video_Inline(admin.TabularInline):
+    model = Video
+
 class courseAdmin(admin.ModelAdmin):
-    inlines = things2learnInline, courseRequirementsInline
+    inlines = things2learnInline, courseRequirementsInline,  Video_Inline
 
 # Register your models here.
 admin.site.register(Categories)
