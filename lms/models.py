@@ -27,6 +27,7 @@ class Level(models.Model):
 class Author(models.Model):
     author_profile = models.ImageField(upload_to="Images/authors")
     name = models.CharField(max_length=100, null=True)
+    speacailty = models.CharField(max_length=100, default='web dev')
     about_author = models.TextField()
 
     def __str__(self):
@@ -116,7 +117,7 @@ class Video(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     youtube_id = models.CharField(max_length=100)
-    duration = models.FloatField(null=True, blank=True)
+    duration = models.IntegerField(null=True, blank=True)
     preview = models.BooleanField(default=False)
 
     def __str__(self) -> str:
