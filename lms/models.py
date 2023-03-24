@@ -27,7 +27,7 @@ class Level(models.Model):
 class Author(models.Model):
     author_profile = models.ImageField(upload_to="Images/authors")
     name = models.CharField(max_length=100, null=True)
-    speacailty = models.CharField(max_length=100, default='web dev')
+    specialty = models.CharField(max_length=100, default='web dev')
     about_author = models.TextField()
 
     def __str__(self):
