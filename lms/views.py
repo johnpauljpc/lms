@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Categories, Course, Level, Video
+from .models import (Categories, Course, Level, Video,
+                     Author)
 
 from django.template.loader import render_to_string
 from django.http import JsonResponse
@@ -43,6 +44,7 @@ def courseDetail(request, slug):
    course = Course.objects.filter(slug=slug)
    categories = Categories.get_all_categories(Categories)
    time_duration = Video.objects.filter(course__slug = slug).aggregate(sum = Sum('duration'))
+   sum_of_author_courses = Course.objects.filter(slug = slug).count()  # sum_of_author_courses = Author.objects.filter(author = course.author).aggregate(sum = Sum())
    
 
    if course.exists():
@@ -53,6 +55,7 @@ def courseDetail(request, slug):
       'course':course,
       'categories':categories,
       'time_duration':time_duration,
+      'sum_of_author_courses': sum_of_author_courses,
    }
    
    return render(request, 'lms/course-details.html', context)

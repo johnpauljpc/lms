@@ -300,7 +300,7 @@
                                     </svg>
 
                                 </div>
-                                29 courses
+                                29 courses {{sum_of_author_courses}}
                             </div>
                         </div>
                     </div>
@@ -548,7 +548,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Duration</h6>
-                                <span>{{time_duration.sum}} weeks</span>
+                                <span>{{time_duration.sum}} mins</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -559,7 +559,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Lectures</h6>
-                                <span>32</span>
+                                <span>{{course.video_set.all.count}}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -583,7 +583,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Language</h6>
-                                <span>English</span>
+                                <span>{{course.language}}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -596,7 +596,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Skill level</h6>
-                                <span>beginner</span>
+                                <span>{{course.level.name}}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">

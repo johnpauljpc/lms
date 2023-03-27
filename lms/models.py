@@ -22,6 +22,13 @@ class Level(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Language(models.Model):
+    name = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.name
 
 
 class Author(models.Model):
@@ -43,6 +50,7 @@ class Course(models.Model):
     featured_image = models.ImageField(upload_to="Images/featured_img",null=True)
     featured_video = models.CharField(max_length=300,null=True)
     title = models.CharField(max_length=500)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
     created_at = models.DateField(auto_now_add=True)
     author = models.ForeignKey(Author,on_delete=models.CASCADE,null=True)
     category = models.ForeignKey(Categories,on_delete=models.CASCADE)
