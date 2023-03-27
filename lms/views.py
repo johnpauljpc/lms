@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Categories, Course, Level
+from .models import Categories, Course, Level, Video
 
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from django.db.models import Q
+from django.db.models import Q, Sum 
 
 # Create your views here.
 
@@ -42,6 +42,8 @@ def Courses(request):
 def courseDetail(request, slug):
    course = Course.objects.filter(slug=slug)
    categories = Categories.get_all_categories(Categories)
+   time_duration = Video.objects.filter(course__slug = slug).aggregate(sum = Sum('duration'))
+   
 
    if course.exists():
       course = course.first()
@@ -50,6 +52,7 @@ def courseDetail(request, slug):
    context = {
       'course':course,
       'categories':categories,
+      'time_duration':time_duration,
    }
    
    return render(request, 'lms/course-details.html', context)
