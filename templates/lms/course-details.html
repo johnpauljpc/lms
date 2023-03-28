@@ -613,7 +613,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Deadline</h6>
-                                <span>06 April 2020</span>
+                                <span>{{course.deadline}}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">
@@ -625,7 +625,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Certificate</h6>
-                                <span>Yes</span>
+                                <span>{% if course.certificate == 1 %} Yes {%else%} No {%endif%}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-4" style="background-color: #F7F9FB;">
                                 <a href="course-single-v5.html" class="mx-auto text-teal fw-medium d-flex align-items-center mt-2">
