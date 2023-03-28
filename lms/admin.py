@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (Categories, Author, Course, Level,
                      things_you_wil_learn, Course_Requirements,
-                     Lesson, Video, Language)
+                     Lesson, Video, Language, UserCourse)
 
 class things2learnInline(admin.TabularInline):
     model = things_you_wil_learn
@@ -28,3 +28,4 @@ admin.site.register(Course_Requirements)
 admin.site.register(Lesson)
 admin.site.register(Video)
 admin.site.register(Language)
+admin.site.register(UserCourse)

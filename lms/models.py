@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Categories(models.Model):
@@ -132,3 +133,17 @@ class Video(models.Model):
 
     def __str__(self) -> str:
         return self.title
+    
+
+
+
+class UserCourse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    paid = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add= True)
+
+
+
+    def __str__(self):
+        return f'{self.user.first_name} - {self.course.title}'

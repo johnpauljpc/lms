@@ -5,6 +5,7 @@ from .models import (Categories, Course, Level, Video,
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q, Sum 
+from django.views.generic import View
 
 # Create your views here.
 
@@ -108,10 +109,11 @@ def filter_data(request):
 
 def searchField(request):
    q = request.GET['search-query']
+   categories = Categories.get_all_categories(Categories)
    
    courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) | Q(category__name__icontains=q))
    print('>>>>>>>>>>>>>>>>>>>>> SS  ', courses)
-   context = {'query': q, 'courses':courses, 'categories':categories,}
+   context = {'query': q, 'courses':courses, 'categories':categories}
    return render(request, 'search/search.html', context=context)
 #  return redirect(request.META.get("HTTP_REFERER", "/")
 
@@ -121,3 +123,7 @@ def pageNotFound(request):
        'categories':categories,
     }
    return render(request, 'error/404.html', context)
+
+
+class CheckoutView(View):
+   pass
