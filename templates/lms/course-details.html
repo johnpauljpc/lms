@@ -541,11 +541,11 @@
                             <span class="ms-2">2 days left at this price!</span>
                         </div>
 
-                        {% if course.price > 0 %}
-                        <button class="btn btn-primary btn-block mb-3" type="button" name="button">BUY NOW</button>
+                        {% if Enrolled %}
+                        <button class="btn btn-primary btn-block mb-3 disabled" type="button" name="button">Already Enrolled</button>
+                        {%else%}
+                        <a href="{% url 'checkout' course.slug %}" class="btn btn-orange btn-block mb-6 " type="button" name="button" >ENROLL</a>
                         {% endif %}
-                        <a href="{% url 'checkout' course.slug %}" class="btn btn-orange btn-block mb-6" type="button" name="button">ENROLL</a>
-
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">

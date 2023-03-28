@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import (Categories, Course, Level, Video,
-                     Author)
+                     Author, UserCourse)
 
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q, Sum 
 from django.views.generic import View
+from django.contrib import messages
 
 # Create your views here.
 
@@ -47,6 +48,12 @@ def courseDetail(request, slug):
    time_duration = Video.objects.filter(course__slug = slug).aggregate(sum = Sum('duration'))
    sum_of_author_courses = Course.objects.filter(slug = slug).count()  # sum_of_author_courses = Author.objects.filter(author = course.author).aggregate(sum = Sum())
    
+   # check is user is enrolled
+   course_id = Course.objects.get(slug=slug)
+   try:
+      Enrolled = UserCourse.objects.get(user = request.user, course = course_id)
+   except UserCourse.DoesNotExist:
+      Enrolled = None
 
    if course.exists():
       course = course.first()
@@ -57,6 +64,7 @@ def courseDetail(request, slug):
       'categories':categories,
       'time_duration':time_duration,
       'sum_of_author_courses': sum_of_author_courses,
+      'Enrolled':Enrolled
    }
    
    return render(request, 'lms/course-details.html', context)
@@ -126,4 +134,27 @@ def pageNotFound(request):
 
 
 class CheckoutView(View):
-   pass
+   def get(self, request, slug):
+      course = Course.objects.get(slug=slug)
+
+      if course.price == 0:
+         usercourse = UserCourse(
+            user = request.user,
+            course = course
+         )
+         usercourse.save()
+         messages.success(request, f"<b>{course}</b> successfully enrolled")
+         return redirect('home')
+      
+      course_id = Course.objects.get(slug = slug)
+      try:
+         enroll_status = UserCourse.objects.get(user = request.user, course = course_id)
+      except UserCourse.DoesNotExist:
+         enroll_status = None
+      return render(request, 'lms/checkout.html')
+   
+   def post(self, request, slug):
+      return render(request, 'lms/checkout.html')
+   
+# def CheckoutView(request, slug):
+#       return render(request, 'lms/checkout.html')
