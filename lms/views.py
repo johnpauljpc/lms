@@ -158,3 +158,16 @@ class CheckoutView(View):
    
 # def CheckoutView(request, slug):
 #       return render(request, 'lms/checkout.html')
+
+class MyCourses(View):
+   
+   def get(self, request):
+      course = UserCourse.objects.filter(user__id = request.user.id)
+      context = {
+         'courses':course
+      }
+      
+      return render (request, 'lms/my-courses.html', context=context)
+   
+   def post(self, request):
+      return render (request, 'lms/my-courses.html')

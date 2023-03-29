@@ -34,11 +34,13 @@
     ================================================== -->
     <div class="container mb-6 mb-xl-8 z-index-2">
         <div class="d-lg-flex align-items-center mb-6 mb-xl-0">
+            <i class="text-dark">work on this JPC... </i><..../></i>
             {% if number_courses >= 1 %}
             <p class="mb-lg-0">We found <span class="text-dark">{{number_courses}} courses</span> available for you</p>
             {% endif %}
 
             <div class="ms-lg-auto d-lg-flex flex-wrap">
+                
                 <div class="mb-4 mb-lg-0 ms-lg-6">
                     <div class="border rounded d-flex align-items-center choices-label h-50p">
                         <span class="ps-5">Sort by:</span>
@@ -62,6 +64,10 @@
                 <!-- SIDEBAR FILTER
                 ================================================== -->
                 <div class=" vertical-scroll" id="courseSidebar">
+                    
+                    {% if number_courses >= 1 %}
+                    <p class="mb-lg-0">We found <span class="text-dark">{{number_courses}} courses</span> available for you</p>
+                    {% endif %}
                     <div class="border rounded mb-6 @@widgetBG">
                         <!-- Heading -->
                         <div id="coursefilter1">
