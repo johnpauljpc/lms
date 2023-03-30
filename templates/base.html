@@ -85,6 +85,13 @@
     <!-- Theme JS -->
     <script src="{% static 'assets/js/theme.min.js' %}"></script>
 
+    <style>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+    </style>
+
 
 </body>
 
