@@ -194,10 +194,17 @@
                                             <i class="fa fa-youtube-play" style="color: red;"></i>
 
                                         </div>
-
+                                        {% if video.preview == 1%}
+                                        <a href="https://youtu.be/{{video.youtube_id}}" class="rounded" data-fancybox>
+                                            <div class="ms-4">
+                                                {{video.title}}
+                                            </div>
+                                        </a>
+                                        {%else%}
                                         <div class="ms-4">
                                             {{video.title}}
                                         </div>
+                                        {% endif %}
                                     </div>
 
                                     <div class="d-flex align-items-center overflow-auto overflow-md-visible flex-shrink-all">
@@ -510,7 +517,7 @@
                             </svg>
 
                         </div>
-                        <img class="rounded shadow-light-lg" src="assets/img/products/product-2.jpg" alt="...">
+                        <img class="rounded shadow-light-lg" src="{{course.featured_image.url}}" alt="...">
                     </a>
 
                     <div class="pt-5 pb-4 px-5 px-lg-3 px-xl-5">
@@ -579,7 +586,7 @@
 
                                 </div>
                                 <h6 class="mb-0 ms-3 me-auto">Enrolled</h6>
-                                <span>1982 students</span>
+                                <span>{{course.usercourse_set.all.count}} students</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-3" style="background-color: #F7F9FB;">
                                 <div class="text-secondary d-flex icon-uxs">
