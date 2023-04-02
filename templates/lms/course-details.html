@@ -195,7 +195,7 @@
 
                                         </div>
                                         {% if Enrolled is not None %}
-                                        <a  href="https://youtu.be/{{video.youtube_id}}" class="rounded" data-fancybox>
+                                        <a  href="{% url 'watch-course' video.course.slug %}" class="rounded">
                                             <div class="ms-4"  data-bs-toggle="tooltip" title="click to watch video">
                                                 {{video.title}}
                                             </div>

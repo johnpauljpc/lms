@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (index, Courses, contactUs, 
                     aboutUs,filter_data, searchField,courseDetail,
-                    pageNotFound, CheckoutView, MyCourses)
+                    pageNotFound, CheckoutView, MyCourses, Watch_Course)
 
 urlpatterns = [
     path('', index, name='home'),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('search/', searchField, name='search'),
     path('not-found/', pageNotFound, name='404'),
     path('checkout/<slug:slug>/', CheckoutView.as_view(), name='checkout'),
-    path('my-courses/', MyCourses.as_view(), name='my-courses')
+    path('my-courses/', MyCourses.as_view(), name='my-courses'),
+    path('course/watch-course/<slug:slug>/', Watch_Course, name='watch-course')
 ]

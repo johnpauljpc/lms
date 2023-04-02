@@ -171,3 +171,7 @@ class MyCourses(View):
    
    def post(self, request):
       return render (request, 'lms/my-courses.html')
+
+def Watch_Course(request, slug):
+   
+   return render(request, 'lms/watch-course.html')
