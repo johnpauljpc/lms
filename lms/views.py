@@ -173,5 +173,29 @@ class MyCourses(View):
       return render (request, 'lms/my-courses.html')
 
 def Watch_Course(request, slug):
+   # lecture = request.GET.get('lecture')
+   # print('>>>>>>>>>>>>>>>>>>>>                ', lecture)
+   course_id = Course.objects.get(slug = slug)
+   course = Course.objects.filter(slug = slug)
+
+   try:
+      check_enroll  = UserCourse.objects.get(user = request.user, course = course_id)
+      # video = Video.objects.get(id = lecture)
+
+      if course.exists():
+         course = course.first()
+      else:
+         return redirect('404')
+   except UserCourse.DoesNotExist:
+      return redirect('404')
    
-   return render(request, 'lms/watch-course.html')
+
+   context = {
+      # 'lecture': lecture,
+      'course': course,
+      # 'video': video
+   }
+   print(context)
+   
+   
+   return render(request, 'course/watch-course.html', context)
