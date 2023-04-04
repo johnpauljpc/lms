@@ -148,7 +148,7 @@ def CheckoutView(request, slug):
       )
       usercourse.save()
       messages.success(request, f"<b>{course}</b> successfully enrolled")
-      return redirect('home')
+      return redirect('my-courses')
    
    course_id = Course.objects.get(slug = slug)
    try:
