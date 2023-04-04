@@ -7,6 +7,8 @@ from django.http import JsonResponse
 from django.db.models import Q, Sum 
 from django.views.generic import View
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -50,10 +52,12 @@ def courseDetail(request, slug):
    
    # check is user is enrolled
    course_id = Course.objects.get(slug=slug)
-   try:
-      Enrolled = UserCourse.objects.get(user = request.user, course = course_id)
-   except UserCourse.DoesNotExist:
-      Enrolled = None
+   if request.user.is_authenticated:
+      try:
+         Enrolled = UserCourse.objects.get(user = request.user, course = course_id)
+      except UserCourse.DoesNotExist:
+         Enrolled = None
+   Enrolled = None
 
    if course.exists():
       course = course.first()
@@ -133,28 +137,27 @@ def pageNotFound(request):
    return render(request, 'error/404.html', context)
 
 
-class CheckoutView(View):
-   def get(self, request, slug):
-      course = Course.objects.get(slug=slug)
+@login_required(login_url='login')
+def CheckoutView(request, slug):
+   course = Course.objects.get(slug=slug)
 
-      if course.price == 0:
-         usercourse = UserCourse(
-            user = request.user,
-            course = course
-         )
-         usercourse.save()
-         messages.success(request, f"<b>{course}</b> successfully enrolled")
-         return redirect('home')
-      
-      course_id = Course.objects.get(slug = slug)
-      try:
-         enroll_status = UserCourse.objects.get(user = request.user, course = course_id)
-      except UserCourse.DoesNotExist:
-         enroll_status = None
-      return render(request, 'lms/checkout.html')
+   if course.price == 0:
+      usercourse = UserCourse(
+         user = request.user,
+         course = course
+      )
+      usercourse.save()
+      messages.success(request, f"<b>{course}</b> successfully enrolled")
+      return redirect('home')
    
-   def post(self, request, slug):
-      return render(request, 'lms/checkout.html')
+   course_id = Course.objects.get(slug = slug)
+   try:
+      enroll_status = UserCourse.objects.get(user = request.user, course = course_id)
+   except UserCourse.DoesNotExist:
+      enroll_status = None
+   return render(request, 'lms/checkout.html')
+
+
    
 # def CheckoutView(request, slug):
 #       return render(request, 'lms/checkout.html')

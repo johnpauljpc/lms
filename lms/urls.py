@@ -13,7 +13,7 @@ urlpatterns = [
     path('about-us/', aboutUs, name='about-us'),
     path('search/', searchField, name='search'),
     path('not-found/', pageNotFound, name='404'),
-    path('checkout/<slug:slug>/', CheckoutView.as_view(), name='checkout'),
+    path('checkout/<slug:slug>/', CheckoutView, name='checkout'),
     path('my-courses/', MyCourses.as_view(), name='my-courses'),
     path('course/watch-course/<slug:slug>/', Watch_Course, name='watch-course')
 ]
