@@ -38,10 +38,17 @@
                 <h3 class="mb-6">Log In to Your Skola Account!</h3>
 
                 <!-- Form Login -->
+                
                 <form class="mb-5" method="post" action="{% url 'login' %}">
                     
                     {% csrf_token %}
                     <!-- Email -->
+                    {% if request.GET.next %}
+                    <!-- To redirect to previous page after login -->
+                    <input type="hidden" value="{{request.GET.next}}" name="next">
+                    {% endif %}
+
+                    
                     <div class="form-group mb-5">
                         <label for="modalSigninEmail1">
                             Username or Email

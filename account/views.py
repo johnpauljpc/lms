@@ -60,8 +60,18 @@ def loginView(request):
         user = EmailBackend.authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.info(request, f"welcome {user}")
-            return redirect('home')
+            # redirecting to the previous page if any
+            if 'next' in request.POST:
+                
+                return redirect(request.POST.get('next'))
+            else: 
+                messages.info(request, f"welcome {user}")
+                return redirect('home')
+    
+    if request.GET.get('next'):
+            messages.info(request, f'To continue, please <b>login</b>!')
+
+    
 
     return render(request, 'accounts/login.html')
 
