@@ -57,7 +57,8 @@ def courseDetail(request, slug):
          Enrolled = UserCourse.objects.get(user = request.user, course = course_id)
       except UserCourse.DoesNotExist:
          Enrolled = None
-   Enrolled = None
+   else:
+      Enrolled = None
 
    if course.exists():
       course = course.first()
@@ -153,6 +154,10 @@ def CheckoutView(request, slug):
    course_id = Course.objects.get(slug = slug)
    try:
       enroll_status = UserCourse.objects.get(user = request.user, course = course_id)
+      if enroll_status is not None:
+         messages.info(request, f"You have enrolled on <b>{course_id.title}</b> already!")
+         return redirect('my-courses')
+   
    except UserCourse.DoesNotExist:
       enroll_status = None
    return render(request, 'lms/checkout.html')
