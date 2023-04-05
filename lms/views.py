@@ -185,6 +185,10 @@ def Watch_Course(request, slug):
    # print('>>>>>>>>>>>>>>>>>>>>                ', lecture)
    course_id = Course.objects.get(slug = slug)
    course = Course.objects.filter(slug = slug)
+   lecture = request.GET.get('lecture')
+   video = Video.objects.filter(id = lecture).first()
+   print(">>>>>>>>>>>>>>>>>>> ")
+   print(lecture)
 
    try:
       check_enroll  = UserCourse.objects.get(user = request.user, course = course_id)
@@ -201,7 +205,7 @@ def Watch_Course(request, slug):
    context = {
       # 'lecture': lecture,
       'course': course,
-      # 'video': video
+      'video': video
    }
    print(context)
    
