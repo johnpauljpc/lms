@@ -426,7 +426,7 @@
                     <ul class="list-unstyled pt-2">
                         <li class="media d-flex">
                             <div class="avatar avatar-xxl me-3 me-md-6 flex-shrink-0">
-                                <img src="assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-1.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body flex-grow-1">
                                 <div class="d-md-flex align-items-center mb-5">
@@ -443,7 +443,7 @@
                         </li>
                         <li class="media d-flex">
                             <div class="avatar avatar-xxl me-3 me-md-6 flex-shrink-0">
-                                <img src="assets/img/avatars/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-2.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body flex-grow-1">
                                 <div class="d-md-flex align-items-center mb-5">
@@ -532,8 +532,8 @@
                     <div class="pt-5 pb-4 px-5 px-lg-3 px-xl-5">
                         <div class="d-flex align-items-center mb-2">
                             {% if course.price > 0 %}
-                            <ins class="h2 mb-0">${% discount_calculation course.price course.discount%}</ins>
-                            <del class="ms-3">{{course.price}}</del>
+                            <ins class="h2 mb-0">&#8358;{% discount_calculation course.price course.discount%}</ins>
+                            <del class="ms-3">&#8358;{{course.price}}</del>
                             <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">{{course.discount}}% Off</div>
 
                             {% else %}
@@ -653,7 +653,7 @@
                                 <span>{% if course.certificate == 1 %} Yes {%else%} No {%endif%}</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center py-4" style="background-color: #F7F9FB;">
-                                <a href="course-single-v5.html" class="mx-auto text-teal fw-medium d-flex align-items-center mt-2">
+                                <a href="https://wa.me/?text=Check out this course: {{ course.title }}" target="_blank" rel="noopener" class="mx-auto text-teal fw-medium d-flex align-items-center mt-2">
                                     <!-- Icon -->
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.0283 6.25C14.3059 6.25 12.9033 4.84833 12.9033 3.125C12.9033 1.40167 14.3059 0 16.0283 0C17.7509 0 19.1533 1.40167 19.1533 3.125C19.1533 4.84833 17.7509 6.25 16.0283 6.25ZM16.0283 1.25C14.995 1.25 14.1533 2.09076 14.1533 3.125C14.1533 4.15924 14.995 5 16.0283 5C17.0616 5 17.9033 4.15924 17.9033 3.125C17.9033 2.09076 17.0616 1.25 16.0283 1.25Z" fill="currentColor"/>
@@ -675,54 +675,54 @@
                         <h3 class="mb-5">Latest Courses</h3>
                         <ul class="list-unstyled mb-0">
                             <li class="media mb-6 d-flex">
-                                <a href="course-single-v5.html" class="w-100p d-block me-5">
-                                    <img src="assets/img/photos/photo-1.jpg" alt="..." class="avatar-img rounded-lg h-90p w-100p">
+                                <a href="{% url 'courses' %}" class="w-100p d-block me-5">
+                                    <img src="{% static 'assets/img/photos/photo-1.jpg' %}" alt="..." class="avatar-img rounded-lg h-90p w-100p">
                                 </a>
                                 <div class="media-body flex-grow-1">
-                                    <a href="course-single-v5.html" class="d-block">
+                                    <a href="{% url 'courses' %}" class="d-block">
                                         <h6 class="line-clamp-2 mb-3">Web Developtment and Design</h6>
                                     </a>
-                                    <del class="font-size-sm me-2">$959</del>
-                                    <ins class="h6 mb-0 ">$415.99</ins>
+                                    <del class="font-size-sm me-2">&#8358;959,000</del>
+                                    <ins class="h6 mb-0 ">&#8358;415,990</ins>
                                 </div>
                             </li>
 
                             <li class="media mb-6 d-flex">
-                                <a href="course-single-v5.html" class="w-100p d-block me-5">
-                                    <img src="assets/img/photos/photo-2.jpg" alt="..." class="avatar-img rounded-lg h-90p w-100p">
+                                <a href="{% url 'courses' %}" class="w-100p d-block me-5">
+                                    <img src="{% static 'assets/img/photos/photo-2.jpg' %}" alt="..." class="avatar-img rounded-lg h-90p w-100p">
                                 </a>
                                 <div class="media-body flex-grow-1">
-                                    <a href="course-single-v5.html" class="d-block">
+                                    <a href="{% url 'courses' %}" class="d-block">
                                         <h6 class="line-clamp-2 mb-3">The Complete Cyber Security Course : Hackers </h6>
                                     </a>
-                                    <del class="font-size-sm me-2">$959</del>
-                                    <ins class="h6 mb-0 ">$415.99</ins>
+                                    <del class="font-size-sm me-2">&#8358;959,000</del>
+                                    <ins class="h6 mb-0 ">&#8358;415,990</ins>
                                 </div>
                             </li>
 
                             <li class="media mb-6 d-flex">
-                                <a href="course-single-v5.html" class="w-100p d-block me-5">
-                                    <img src="assets/img/photos/photo-14.jpg" alt="..." class="avatar-img rounded-lg h-90p w-100p">
+                                <a href="{% url 'courses' %}" class="w-100p d-block me-5">
+                                    <img src="{% static 'assets/img/photos/photo-14.jpg' %}" alt="..." class="avatar-img rounded-lg h-90p w-100p">
                                 </a>
                                 <div class="media-body flex-grow-1">
-                                    <a href="course-single-v5.html" class="d-block">
+                                    <a href="{% url 'courses' %}" class="d-block">
                                         <h6 class="line-clamp-2 mb-3">Fashion Photography From Professional</h6>
                                     </a>
-                                    <del class="font-size-sm me-2">$959</del>
-                                    <ins class="h6 mb-0 ">$415.99</ins>
+                                    <del class="font-size-sm me-2">&#8358;959,000</del>
+                                    <ins class="h6 mb-0 ">&#8358;415,990</ins>
                                 </div>
                             </li>
 
                             <li class="media mb-6 d-flex">
-                                <a href="course-single-v5.html" class="w-100p d-block me-5">
-                                    <img src="assets/img/photos/photo-16.jpg" alt="..." class="avatar-img rounded-lg h-90p w-100p">
+                                <a href="{% url 'courses' %}" class="w-100p d-block me-5">
+                                    <img src="{% static 'assets/img/photos/photo-16.jpg' %}" alt="..." class="avatar-img rounded-lg h-90p w-100p">
                                 </a>
                                 <div class="media-body flex-grow-1">
-                                    <a href="course-single-v5.html" class="d-block">
+                                    <a href="{% url 'courses' %}" class="d-block">
                                         <h6 class="line-clamp-2 mb-3">The Complete Financial Analyst Course 2020</h6>
                                     </a>
-                                    <del class="font-size-sm me-2">$959</del>
-                                    <ins class="h6 mb-0 ">$415.99</ins>
+                                    <del class="font-size-sm me-2">&#8358;959,000</del>
+                                    <ins class="h6 mb-0 ">&#8358;415,990</ins>
                                 </div>
                             </li>
                         </ul>
@@ -743,23 +743,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-15.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-15.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Photography</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Photography</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Fashion Photography From Professional</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Fashion Photography From Professional</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -794,23 +794,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-14.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-14.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time Management for workplace</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time Management for workplace</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -845,23 +845,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-16.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-16.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Personal Development</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Personal Development</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking From Scratch</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking From Scratch</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -896,23 +896,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-12.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-12.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Development</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Development</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete JavaScript Course 2020: Real Projects!</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete JavaScript Course 2020: Real Projects!</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -947,23 +947,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-13.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-13.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking From Scratch</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking From Scratch</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -998,23 +998,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-11.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-11.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Development</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Development</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete JavaScript Course 2020: Real Projects!</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete JavaScript Course 2020: Real Projects!</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
@@ -1049,23 +1049,23 @@
                 <div class="card border shadow-dark-hover p-2 sk-fade">
                     <!-- Image -->
                     <div class="card-zoom position-relative">
-                        <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
-                            <img class="rounded shadow-light-lg" src="assets/img/products/product-10.jpg" alt="...">
+                        <a href="{% url 'courses' %}" class="card-img sk-thumbnail img-ratio-3 d-block">
+                            <img class="rounded shadow-light-lg" src="{% static 'assets/img/products/product-10.jpg' %}" alt="...">
                         </a>
 
                         <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
-                            <ins class="h5 mb-0 text-white">$415.99</ins>
+                            <ins class="h5 mb-0 text-white">&#8358;415,990</ins>
                         </span>
                     </div>
 
                     <!-- Footer -->
                     <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         <!-- Preheading -->
-                        <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+                        <a href="{% url 'courses' %}"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
 
                         <!-- Heading -->
                         <div class="position-relative">
-                            <a href="course-single-v5.html" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time Management for workplace</h5></a>
+                            <a href="{% url 'courses' %}" class="d-block stretched-link"><h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time Management for workplace</h5></a>
 
                             <div class="row mx-n2 align-items-end">
                                 <div class="col px-2">
