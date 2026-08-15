@@ -1,4 +1,4 @@
- {% load static %}
+{% load static %}
  
  <!-- FOOTER
     ================================================== -->
@@ -12,37 +12,42 @@
 
                     <!-- Text -->
                     <p class="text-gray-800 mb-4 font-size-sm-alone">
-                        329 Queensberry Street, North Melbourne VIC 3051, Australia.
+                        JPC Academy, 14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria.
                     </p>
 
                     <div class="mb-4">
-                        <a href="tel:1234567890" class="text-gray-800 font-size-sm-alone">123 456 7890</a>
+                        <a href="tel:+2348012345678" class="text-gray-800 font-size-sm-alone">+234 801 234 5678</a>
                     </div>
 
                     <div class="mb-4">
-                        <a href="mailto:support@skola.com" class="text-gray-800 font-size-sm-alone">support@skola.com</a>
+                        <a href="mailto:support@jpcacademy.com" class="text-gray-800 font-size-sm-alone">support@jpcacademy.com</a>
                     </div>
 
                     <!-- Social -->
                     <ul class="list-unstyled list-inline list-social mb-4 mb-md-0">
                         <li class="list-inline-item list-social-item">
-                            <a href="#" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
+                            <a href="https://facebook.com" target="_blank" rel="noopener" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li class="list-inline-item list-social-item">
-                            <a href="#" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
+                            <a href="https://x.com" target="_blank" rel="noopener" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li class="list-inline-item list-social-item">
-                            <a href="#" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
+                            <a href="https://instagram.com" target="_blank" rel="noopener" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </li>
                         <li class="list-inline-item list-social-item">
-                            <a href="#" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
                                 <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item list-social-item">
+                            <a href="https://wa.me/2348012345678" target="_blank" rel="noopener" class="text-secondary font-size-sm w-36 h-36 shadow-dark-hover d-flex align-items-center justify-content-center rounded-circle border-hover">
+                                <i class="fab fa-whatsapp"></i>
                             </a>
                         </li>
                     </ul>
@@ -76,42 +81,32 @@
                             <!-- List -->
                             <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-6 mb-md-8 mb-lg-0">
                                 <li class="mb-3">
-                                    <a href="about-v1.html" class="text-reset">
-                                        Our Company
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="about-v2.html" class="text-reset">
+                                    <a href="{% url 'about-us' %}" class="text-reset">
                                         About Us
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="contact-us.html" class="text-reset">
+                                    <a href="{% url 'contact-us' %}" class="text-reset">
                                         Contact Us
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="contact-us.html" class="text-reset">
-                                        Community
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        All Courses
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="course-list-v1.html" class="text-reset">
-                                        Student Perks
+                                    <a href="{% url 'my-courses' %}" class="text-reset">
+                                        My Courses
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="blog-grid-v1.html" class="text-reset">
-                                        Blog
+                                    <a href="{% url 'search' %}" class="text-reset">
+                                        Search Courses
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="pricing.html" class="text-reset">
-                                        Affiliate Program
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="contact-us.html" class="text-reset">
+                                    <a href="{% url 'contact-us' %}" class="text-reset">
                                         Careers
                                     </a>
                                 </li>
@@ -147,49 +142,16 @@
                         <div id="widgetcollapseTwo" class="collapse" aria-labelledby="widgetTwo" data-parent="#accordionFooter">
                             <!-- List -->
                             <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-6 mb-md-8 mb-lg-0">
+                                {% for cat in categories %}
                                 <li class="mb-3">
-                                    <a href="course-list-v2.html" class="text-reset">
-                                        HTML
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        {{cat.name}}
                                     </a>
                                 </li>
+                                {% endfor %}
                                 <li class="mb-3">
-                                    <a href="course-list-v2.html" class="text-reset">
-                                        CSS
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v6.html" class="text-reset">
-                                        Design
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v5.html" class="text-reset">
-                                        JavaScript
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v4.html" class="text-reset">
-                                        Ruby
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v1.html" class="text-reset">
-                                        PHP
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v3.html" class="text-reset">
-                                        Android
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v4.html" class="text-reset">
-                                        Development Tools
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="course-list-v6.html" class="text-reset">
-                                        Business
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        All Courses
                                     </a>
                                 </li>
                             </ul>
@@ -204,7 +166,7 @@
                         <div id="widgetThree">
                             <h5 class="mb-5">
                                 <button class="text-dark fw-medium footer-accordion-toggle d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#widgetcollapseThree" aria-expanded="false" aria-controls="widgetcollapseThree">
-                                    Tracks
+                                    Popular Tracks
                                     <span class="ms-auto text-dark">
                                         <!-- Icon -->
                                         <svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,32 +187,32 @@
                             <!-- List -->
                             <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-0">
                                 <li class="mb-3">
-                                    <a href="lesson-single-v1.html" class="text-reset">
-                                        Web Design
-                                    </a>
-                                </li>
-                                <li class="mb-3">
-                                    <a href="lesson-single-v2.html" class="text-reset">
+                                    <a href="{% url 'courses' %}" class="text-reset">
                                         Web Development
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="lesson-single-v1.html" class="text-reset">
-                                        Rails Development
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        Frontend Design
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="lesson-single-v2.html" class="text-reset">
-                                        PHP Development
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        Data Science
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="lesson-single-v1.html" class="text-reset">
-                                        Android Development
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        Mobile Development
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="lesson-single-v2.html" class="text-reset">
+                                    <a href="{% url 'courses' %}" class="text-reset">
+                                        Digital Marketing
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="{% url 'courses' %}" class="text-reset">
                                         Starting a Business
                                     </a>
                                 </li>
@@ -287,23 +249,23 @@
                             <!-- List -->
                             <ul class="list-unstyled text-gray-800 font-size-sm-alone mb-0">
                                 <li class="mb-3">
-                                    <a href="docs/index.html" class="text-reset">
-                                        Documentation
+                                    <a href="{% url 'contact-us' %}" class="text-reset">
+                                        Help Center
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="docs/index.html" class="text-reset">
-                                        Forums
+                                    <a href="{% url 'contact-us' %}" class="text-reset">
+                                        FAQs
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="docs/index.html" class="text-reset">
-                                        Language Packs
+                                    <a href="{% url 'contact-us' %}" class="text-reset">
+                                        Report an Issue
                                     </a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="docs/changelog.html" class="text-reset">
-                                        Release Status
+                                    <a href="{% url 'my-courses' %}" class="text-reset">
+                                        Student Support
                                     </a>
                                 </li>
                             </ul>
@@ -313,31 +275,32 @@
 
                 <div class="col-12 mt-md-5">
                     <div class="border-top pb-5 pt-6 py-md-4 text-center text-xl-start d-flex flex-column d-md-block d-xl-flex flex-xl-row align-items-center">
-                        <p class="text-gray-800 font-size-sm-alone d-block mb-0 mb-md-2 mb-xl-0 order-1 order-md-0 px-9 px-md-0">Copyright © 2021 CreativeLayers. All Right Reserved.</p>
+                        <p class="text-gray-800 font-size-sm-alone d-block mb-0 mb-md-2 mb-xl-0 order-1 order-md-0 px-9 px-md-0">Copyright © {% now "Y" %} JPC Academy. All Right Reserved.</p>
 
                         <div class="ms-xl-auto d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-center">
                             <ul class="navbar-nav flex-row flex-wrap font-size-sm-alone mb-3 mb-md-0 mx-n4 me-md-5 justify-content-center justify-content-lg-start order-1 order-md-0">
                                 <li class="nav-item py-2 py-md-0 px-0 border-top-0">
-                                    <a href="index.html" class="nav-link px-4 fw-normal text-gray-800">Home</a>
+                                    <a href="{% url 'home' %}" class="nav-link px-4 fw-normal text-gray-800">Home</a>
                                 </li>
                                 <li class="nav-item py-2 py-md-0 px-0 border-top-0">
-                                    <a href="terms-of-service.html" class="nav-link px-4 fw-normal text-gray-800">Site Map</a>
+                                    <a href="{% url 'about-us' %}" class="nav-link px-4 fw-normal text-gray-800">Site Map</a>
                                 </li>
                                 <li class="nav-item py-2 py-md-0 px-0 border-top-0">
-                                    <a href="terms-of-service.html" class="nav-link px-4 fw-normal text-gray-800">Privacy policy</a>
+                                    <a href="{% url 'about-us' %}" class="nav-link px-4 fw-normal text-gray-800">Privacy Policy</a>
                                 </li>
                                 <li class="nav-item py-2 py-md-0 px-0 border-top-0">
-                                    <a href="terms-of-service.html" class="nav-link px-4 fw-normal text-gray-800">Web Use Policy</a>
+                                    <a href="{% url 'about-us' %}" class="nav-link px-4 fw-normal text-gray-800">Terms of Use</a>
                                 </li>
                                 <li class="nav-item py-2 py-md-0 px-0 border-top-0">
-                                    <a href="terms-of-service.html" class="nav-link px-4 fw-normal text-gray-800">Cookie Policy</a>
+                                    <a href="{% url 'about-us' %}" class="nav-link px-4 fw-normal text-gray-800">Cookie Policy</a>
                                 </li>
                             </ul>
 
                             <select class="form-select form-select-sm font-size-sm-alone shadow min-width-140 text-left mb-4 mb-md-0" data-choices>
                                 <option>English</option>
-                                <option>Tamil</option>
-                                <option>French</option>
+                                <option>Yoruba</option>
+                                <option>Hausa</option>
+                                <option>Igbo</option>
                             </select>
                         </div>
                     </div>
