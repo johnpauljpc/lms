@@ -23,16 +23,16 @@
                 <div class="col-12 col-md-7 col-lg-7 order-md-1">
                     <!-- Heading -->
                     <h1 class="display-2 text-gradient-1 text-capitalize" data-aos="fade-left" data-aos-duration="150">
-                        Learn on your <span class="fw-bold">Schedule</span>
+                        Learn Digital Skills at Your <span class="fw-bold">Own Pace</span>
                     </h1>
 
                     <!-- Text -->
                     <p class="lead pe-md-8 pe-xl-12 text-capitalize" data-aos="fade-up" data-aos-duration="200">
-                        Technology is bringing a massive wave of evolution on learning things in different ways.
+                        Upskill in tech, business and design — taught by top Nigerian tutors, at prices made for you.
                     </p>
 
                     <!-- Buttons -->
-                    <a href="" class="btn btn-tangerine btn-wide rounded-lg mb-4 mb-md-0 me-md-5 text-w" data-aos="fade-up" data-aos-duration="200">GET STARTED</a>
+                    <a href="{% url 'courses' %}" class="btn btn-tangerine btn-wide rounded-lg mb-4 mb-md-0 me-md-5 text-w" data-aos="fade-up" data-aos-duration="200">GET STARTED</a>
                     <a href="{% url 'courses'%}" class="btn btn-gigas btn-wide rounded-lg mb-4 d-md-inline-block mb-md-0 me-md-5 " data-aos="fade-up" data-aos-duration="200">VIEW COURSES</a>
                     <!-- <a href="{% url 'courses'%}" class="btn btn-gigas btn-wide rounded-lg d-none d-lg-inline-block" data-aos="fade-up" data-aos-duration="200">VIEW COURSES</a> -->
                 </div>
@@ -115,7 +115,7 @@
                                             </svg>
 
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                                        <a href="{{i.get_absolute_url}}" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                                             <!-- Icon -->
                                             <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.2437 1.20728C10.0203 1.20728 8.87397 1.66486 7.99998 2.48357C7.12598 1.66486 5.97968 1.20728 4.7563 1.20728C2.13368 1.20728 0 3.341 0 5.96366C0 7.2555 0.425164 8.52729 1.26366 9.74361C1.91197 10.6841 2.80887 11.5931 3.92937 12.4454C5.809 13.8753 7.66475 14.6543 7.74285 14.6867L7.99806 14.7928L8.25384 14.6881C8.33199 14.6562 10.1889 13.8882 12.0696 12.4635C13.1907 11.6142 14.0881 10.7054 14.7367 9.7625C15.575 8.54385 16 7.26577 16 5.96371C16 3.341 13.8663 1.20728 11.2437 1.20728ZM8.00141 13.3353C6.74962 12.7555 1.33966 10.0142 1.33966 5.96366C1.33966 4.07969 2.87237 2.54698 4.75634 2.54698C5.827 2.54698 6.81558 3.03502 7.46862 3.88598L8.00002 4.57845L8.53142 3.88598C9.18446 3.03502 10.173 2.54698 11.2437 2.54698C13.1276 2.54698 14.6604 4.07969 14.6604 5.96366C14.6603 10.0433 9.25265 12.7613 8.00141 13.3353Z" fill="currentColor"/>
@@ -141,14 +141,14 @@
 
                                 <!-- Footer -->
                                 <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
-                                    <a href="#" class="d-block">
+                                    <a href="{{i.get_absolute_url}}" class="d-block">
                                         <div class="avatar avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
                                             <img src="{{i.author.author_profile.url}}" alt="..." class="avatar-img rounded-circle">
                                         </div>
                                     </a>
 
                                     <!-- Preheading -->
-                                    <a href="#"><span class="mb-1 d-inline-block text-gray-800">{{i.category.name}}</span></a>
+                                    <a href="{{i.get_absolute_url}}"><span class="mb-1 d-inline-block text-gray-800">{{i.category.name}}</span></a>
 
 
                                     <!-- Heading -->
@@ -231,7 +231,7 @@
                                 <!-- Image -->
                                 <div class="card-zoom position-relative">
                                     <div class="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
-                                        <a href="#" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 me-1 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                                        <a href="{{i.get_absolute_url}}" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 me-1 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                                             <!-- Icon -->
                                             <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M17.8856 8.64995C17.7248 8.42998 13.8934 3.26379 8.99991 3.26379C4.10647 3.26379 0.274852 8.42998 0.114223 8.64974C-0.0380743 8.85843 -0.0380743 9.14147 0.114223 9.35016C0.274852 9.57013 4.10647 14.7363 8.99991 14.7363C13.8934 14.7363 17.7248 9.5701 17.8856 9.35034C18.0381 9.14169 18.0381 8.85843 17.8856 8.64995ZM8.99991 13.5495C5.39537 13.5495 2.27345 10.1206 1.3493 8.99965C2.27226 7.87771 5.38764 4.4506 8.99991 4.4506C12.6043 4.4506 15.726 7.8789 16.6505 9.00046C15.7276 10.1224 12.6122 13.5495 8.99991 13.5495Z" fill="currentColor"/>
@@ -239,7 +239,7 @@
                                             </svg>
 
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                                        <a href="{{i.get_absolute_url}}" class="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                                             <!-- Icon -->
                                             <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.2437 1.20728C10.0203 1.20728 8.87397 1.66486 7.99998 2.48357C7.12598 1.66486 5.97968 1.20728 4.7563 1.20728C2.13368 1.20728 0 3.341 0 5.96366C0 7.2555 0.425164 8.52729 1.26366 9.74361C1.91197 10.6841 2.80887 11.5931 3.92937 12.4454C5.809 13.8753 7.66475 14.6543 7.74285 14.6867L7.99806 14.7928L8.25384 14.6881C8.33199 14.6562 10.1889 13.8882 12.0696 12.4635C13.1907 11.6142 14.0881 10.7054 14.7367 9.7625C15.575 8.54385 16 7.26577 16 5.96371C16 3.341 13.8663 1.20728 11.2437 1.20728ZM8.00141 13.3353C6.74962 12.7555 1.33966 10.0142 1.33966 5.96366C1.33966 4.07969 2.87237 2.54698 4.75634 2.54698C5.827 2.54698 6.81558 3.03502 7.46862 3.88598L8.00002 4.57845L8.53142 3.88598C9.18446 3.03502 10.173 2.54698 11.2437 2.54698C13.1276 2.54698 14.6604 4.07969 14.6604 5.96366C14.6603 10.0433 9.25265 12.7613 8.00141 13.3353Z" fill="currentColor"/>
@@ -263,14 +263,14 @@
 
                                 <!-- Footer -->
                                 <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
-                                    <a href="#" class="d-block">
+                                    <a href="{{i.get_absolute_url}}" class="d-block">
                                         <div class="avatar avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
                                             <img src="{{i.author.author_profile.url}}" alt="..." class="avatar-img rounded-circle">
                                         </div>
                                     </a>
 
                                     <!-- Preheading -->
-                                    <a href="#"><span class="mb-1 d-inline-block text-gray-800">{{i.category}}</span></a>
+                                    <a href="{{i.get_absolute_url}}"><span class="mb-1 d-inline-block text-gray-800">{{i.category}}</span></a>
 
 
                                     <!-- Heading -->
@@ -355,7 +355,7 @@
                     <p class="font-size-lg mb-0 text-capitalize">Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
                 </div>
                 <div class="col-md-auto">
-                    <a href="course-list-v3.html" class="d-flex align-items-center fw-medium">
+                    <a href="{% url 'courses' %}" class="d-flex align-items-center fw-medium">
                         Browse All
                         <div class="ms-2 d-flex">
                             <!-- Icon -->
@@ -373,7 +373,7 @@
 
                 <div class="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay="50">
                     <!-- Card -->
-                    <a href="#" class="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                    <a href="{% url 'courses' %}" class="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                         <!-- Image -->
                         <div class="position-relative text-light">
                             <div class="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -409,7 +409,7 @@
     <section class="py-6 py-md-12 position-relative" style="background-color: #E8F8FB;">
         <div class="container">
             <div class="text-center text-capitalize">
-                <h1 class="mb-1">Know why we are best</h1>
+                <h1 class="mb-1">Why Choose Us</h1>
                 <p class="font-size-lg mb-md-7 mb-4">Discover your perfect program in our courses.</p>
             </div>
 
@@ -419,7 +419,7 @@
                 </li>
 
                 <li class="nav-item px-md-5 mb-4 mb-md-0">
-                    <a href="#" class="nav-link fw-medium p-0 opacity-hover"><span class="font-size-xxl me-3">02</span><span class="font-size-lg">Learn why eLearny is Best</span></a>
+                    <a href="#" class="nav-link fw-medium p-0 opacity-hover"><span class="font-size-xxl me-3">02</span><span class="font-size-lg">Why JPC Academy is Best</span></a>
                 </li>
 
                 <li class="nav-item px-md-5 mb-4 mb-md-0">
@@ -434,7 +434,7 @@
                 </div>
 
                 <div class="col-lg-6 order-lg-1">
-                    <h3 class="font-size-xxl text-black mb-4">The Prodigious eLearning Courses for you</h3>
+                    <h3 class="font-size-xxl text-black mb-4">Quality Courses Designed for Nigerians</h3>
 
                     <p class="mb-5 me-lg-6 line-height-lg">Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
 
@@ -445,7 +445,7 @@
                         <li class="mb-5">Provided with Experimental Examples</li>
                     </ul>
 
-                    <a href="#" class="btn btn-gigas btn-wide rounded-lg lift">NEW COURSES</a>
+                    <a href="{% url 'courses' %}" class="btn btn-gigas btn-wide rounded-lg lift">NEW COURSES</a>
                 </div>
             </div>
         </div>
@@ -482,7 +482,7 @@
                     </div>
 
                     <h5>Bookmark Fav Courses</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
 
                 <div class="col-md-4 mb-5">
@@ -502,7 +502,7 @@
                     </div>
 
                     <h5>Live Chats</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
 
                 <div class="col-md-4 mb-5">
@@ -522,7 +522,7 @@
                     </div>
 
                     <h5>App Access</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
 
                 <div class="col-md-4 mb-5">
@@ -539,7 +539,7 @@
                     </div>
 
                     <h5>Video Demonstration</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
 
                 <div class="col-md-4 mb-5">
@@ -557,7 +557,7 @@
                     </div>
 
                     <h5>Book Quality</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
 
                 <div class="col-md-4 mb-5">
@@ -573,7 +573,7 @@
                     </div>
 
                     <h5>Courses for all Ages</h5>
-                    <p class="px-lg-4 px-xl-5">Getting the necessary clarity about the current state to help you improve your game.</p>
+                    <p class="px-lg-4 px-xl-5">New cohort starting this month! Learn React and build real projects with our tutors.</p>
                 </div>
             </div>
         </div>
@@ -594,7 +594,7 @@
                     <div class="card border rounded-lg shadow p-2 lift mb-4 mb-xl-6">
                         <div class="row gx-0">
                             <div class="col-auto">
-                                <a href="event-single.html" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
+                                <a href="{% url 'courses' %}" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
                                     <div class="w-100 text-center">
                                         <h3 class="text-white mb-0 fw-semi-bold font-size-xxl">06</h3>
                                         <span class="h4 mb-0 text-white fw-normal">April</span>
@@ -604,7 +604,7 @@
 
                             <div class="col">
                                 <div class="ms-5 py-2">
-                                    <a href="event-single.html" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Elegant Light Box Paper New Design Conference</h5></a>
+                                    <a href="{% url 'courses' %}" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Lagos Tech Skills Bootcamp 2026 – Register Now</h5></a>
                                     <div class="d-flex align-items-center">
                                         <div class="me-2 d-flex">
                                             <!-- Icon -->
@@ -614,7 +614,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class="font-size-sm">London, UK</div>
+                                        <div class="font-size-sm">Lagos, Nigeria</div>
                                     </div>
                                 </div>
                             </div>
@@ -625,7 +625,7 @@
                     <div class="card border rounded-lg shadow p-2 lift mb-4 mb-xl-6">
                         <div class="row gx-0">
                             <div class="col-auto">
-                                <a href="event-single.html" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
+                                <a href="{% url 'courses' %}" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
                                     <div class="w-100 text-center">
                                         <h3 class="text-white mb-0 fw-semi-bold font-size-xxl">06</h3>
                                         <span class="h4 mb-0 text-white fw-normal">April</span>
@@ -635,7 +635,7 @@
 
                             <div class="col">
                                 <div class="ms-5 py-2">
-                                    <a href="event-single.html" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Elegant Light Box Paper New Design Conference</h5></a>
+                                    <a href="{% url 'courses' %}" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Lagos Tech Skills Bootcamp 2026 – Register Now</h5></a>
                                     <div class="d-flex align-items-center">
                                         <div class="me-2 d-flex">
                                             <!-- Icon -->
@@ -645,7 +645,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class="font-size-sm">London, UK</div>
+                                        <div class="font-size-sm">Lagos, Nigeria</div>
                                     </div>
                                 </div>
                             </div>
@@ -656,7 +656,7 @@
                     <div class="card border rounded-lg shadow p-2 lift mb-4 mb-xl-6">
                         <div class="row gx-0">
                             <div class="col-auto">
-                                <a href="event-single.html" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
+                                <a href="{% url 'courses' %}" class="rounded-lg d-flex w-100p h-100p place-center bg-tangerine">
                                     <div class="w-100 text-center">
                                         <h3 class="text-white mb-0 fw-semi-bold font-size-xxl">06</h3>
                                         <span class="h4 mb-0 text-white fw-normal">April</span>
@@ -666,7 +666,7 @@
 
                             <div class="col">
                                 <div class="ms-5 py-2">
-                                    <a href="event-single.html" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Elegant Light Box Paper New Design Conference</h5></a>
+                                    <a href="{% url 'courses' %}" class="mb-2 me-xl-3 d-block"><h5 class="line-clamp-2 mb-1">Lagos Tech Skills Bootcamp 2026 – Register Now</h5></a>
                                     <div class="d-flex align-items-center">
                                         <div class="me-2 d-flex">
                                             <!-- Icon -->
@@ -676,7 +676,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class="font-size-sm">London, UK</div>
+                                        <div class="font-size-sm">Lagos, Nigeria</div>
                                     </div>
                                 </div>
                             </div>
@@ -691,10 +691,10 @@
                             <div class="card border shadow p-2 lift sk-fade">
                                 <!-- Image -->
                                 <div class="card-zoom position-relative">
-                                    <a href="blog-single.html" class="card-img d-block sk-thumbnail img-ratio-8"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/post/post-7.jpg' %}" alt="..."></a>
+                                    <a href="{% url 'about-us' %}" class="card-img d-block sk-thumbnail img-ratio-8"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/post/post-7.jpg' %}" alt="..."></a>
 
-                                    <a href="blog-single.html" class="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
-                                        <span class="text-white fw-normal font-size-sm">Figma</span>
+                                    <a href="{% url 'about-us' %}" class="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
+                                        <span class="text-white fw-normal font-size-sm">Tech</span>
                                     </a>
                                 </div>
 
@@ -702,7 +702,7 @@
                                 <div class="card-footer px-2 pb-0 pt-4">
                                     <ul class="nav mx-n3 mb-3">
                                         <li class="nav-item px-3">
-                                            <a href="#" class="d-flex align-items-center text-gray-800">
+                                            <a href="{% url 'about-us' %}" class="d-flex align-items-center text-gray-800">
                                                 <div class="me-3 d-flex">
                                                     <!-- Icon -->
                                                     <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -710,11 +710,11 @@
                                                     </svg>
 
                                                 </div>
-                                                <div class="font-size-sm">Jack Wilson</div>
+                                                <div class="font-size-sm">Johnpaul Eze</div>
                                             </a>
                                         </li>
                                         <li class="nav-item px-3">
-                                            <a href="#" class="d-flex align-items-center text-gray-800">
+                                            <a href="{% url 'about-us' %}" class="d-flex align-items-center text-gray-800">
                                                 <div class="me-2 d-flex">
                                                     <!-- Icon -->
                                                     <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -728,7 +728,7 @@
                                     </ul>
 
                                     <!-- Heading -->
-                                    <a href="#" class="d-block"><h5 class="line-clamp-2 h-48 h-lg-52 mb-2">The Best Destinations to Begin Your Round the World Trip</h5></a>
+                                    <a href="{{i.get_absolute_url}}" class="d-block"><h5 class="line-clamp-2 h-48 h-lg-52 mb-2">The Best Destinations to Begin Your Round the World Trip</h5></a>
                                 </div>
                             </div>
                         </div>
@@ -738,9 +738,9 @@
                             <div class="card border shadow p-2 lift sk-fade">
                                 <!-- Image -->
                                 <div class="card-zoom position-relative">
-                                    <a href="blog-single.html" class="card-img d-block sk-thumbnail img-ratio-8"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/post/post-8.jpg' %}" alt="..."></a>
+                                    <a href="{% url 'about-us' %}" class="card-img d-block sk-thumbnail img-ratio-8"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/post/post-8.jpg' %}" alt="..."></a>
 
-                                    <a href="blog-single.html" class="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
+                                    <a href="{% url 'about-us' %}" class="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
                                         <span class="text-white fw-normal font-size-sm">Adobe XD</span>
                                     </a>
                                 </div>
@@ -749,7 +749,7 @@
                                 <div class="card-footer px-2 pb-0 pt-4">
                                     <ul class="nav mx-n3 mb-3">
                                         <li class="nav-item px-3">
-                                            <a href="#" class="d-flex align-items-center text-gray-800">
+                                            <a href="{% url 'about-us' %}" class="d-flex align-items-center text-gray-800">
                                                 <div class="me-3 d-flex">
                                                     <!-- Icon -->
                                                     <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -757,11 +757,11 @@
                                                     </svg>
 
                                                 </div>
-                                                <div class="font-size-sm">Jack Wilson</div>
+                                                <div class="font-size-sm">Johnpaul Eze</div>
                                             </a>
                                         </li>
                                         <li class="nav-item px-3">
-                                            <a href="#" class="d-flex align-items-center text-gray-800">
+                                            <a href="{% url 'about-us' %}" class="d-flex align-items-center text-gray-800">
                                                 <div class="me-2 d-flex">
                                                     <!-- Icon -->
                                                     <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -775,7 +775,7 @@
                                     </ul>
 
                                     <!-- Heading -->
-                                    <a href="#" class="d-block"><h5 class="line-clamp-2 h-48 h-lg-52 mb-2">An Indigenous Anatolian Syllabic Script From 3500 Years Ago</h5></a>
+                                    <a href="{{i.get_absolute_url}}" class="d-block"><h5 class="line-clamp-2 h-48 h-lg-52 mb-2">An Indigenous Anatolian Syllabic Script From 3500 Years Ago</h5></a>
                                 </div>
                             </div>
                         </div>
@@ -809,35 +809,35 @@
                             <div class="card-float card-hover right-0 left-0 bottom-0 mb-4">
                                 <ul class="nav mx-n4 justify-content-center">
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-1.jpg' %}" alt="..."></a>
+                            <a href="{% url 'about-us' %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-1.jpg' %}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="#" class="d-block"><h5 class="mb-0">Jack Wilson</h5></a>
-                            <span class="font-size-d-sm">Developer</span>
+                            <a href="{% url 'about-us' %}" class="d-block"><h5 class="mb-0">Johnpaul Eze</h5></a>
+                            <span class="font-size-d-sm">Software Engineer</span>
                         </div>
                     </div>
                 </div>
@@ -848,35 +848,35 @@
                             <div class="card-float card-hover right-0 left-0 bottom-0 mb-4">
                                 <ul class="nav mx-n4 justify-content-center">
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-2.jpg' %}" alt="..."></a>
+                            <a href="{% url 'about-us' %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-2.jpg' %}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="#" class="d-block"><h5 class="mb-0">Anna Richard</h5></a>
-                            <span class="font-size-d-sm">Travel Bloger</span>
+                            <a href="{% url 'about-us' %}" class="d-block"><h5 class="mb-0">Chigozie Nwosu</h5></a>
+                            <span class="font-size-d-sm">Web Developer</span>
                         </div>
                     </div>
                 </div>
@@ -887,34 +887,34 @@
                             <div class="card-float card-hover right-0 left-0 bottom-0 mb-4">
                                 <ul class="nav mx-n4 justify-content-center">
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-3.jpg' %}" alt="..."></a>
+                            <a href="{% url 'about-us' %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-3.jpg' %}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="#" class="d-block"><h5 class="mb-0">Kathelen Monero</h5></a>
+                            <a href="{% url 'about-us' %}" class="d-block"><h5 class="mb-0">Aisha Bello</h5></a>
                             <span class="font-size-d-sm">Designer</span>
                         </div>
                     </div>
@@ -926,34 +926,34 @@
                             <div class="card-float card-hover right-0 left-0 bottom-0 mb-4">
                                 <ul class="nav mx-n4 justify-content-center">
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-4.jpg' %}" alt="..."></a>
+                            <a href="{% url 'about-us' %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-4.jpg' %}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="#" class="d-block"><h5 class="mb-0">Kristen Pala</h5></a>
+                            <a href="{% url 'about-us' %}" class="d-block"><h5 class="mb-0">Emeka Okafor</h5></a>
                             <span class="font-size-d-sm">User Experience Design</span>
                         </div>
                     </div>
@@ -965,35 +965,35 @@
                             <div class="card-float card-hover right-0 left-0 bottom-0 mb-4">
                                 <ul class="nav mx-n4 justify-content-center">
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4">
-                                        <a href="#" class="d-block text-white">
+                                        <a href="{% url 'about-us' %}" class="d-block text-white">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="instructors-single.html" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-2.jpg' %}" alt="..."></a>
+                            <a href="{% url 'about-us' %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{% static 'assets/img/instructors/instructor-2.jpg' %}" alt="..."></a>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-3 pt-4 pb-1">
-                            <a href="#" class="d-block"><h5 class="mb-0">Anna Richard</h5></a>
-                            <span class="font-size-d-sm">Travel Bloger</span>
+                            <a href="{% url 'about-us' %}" class="d-block"><h5 class="mb-0">Chigozie Nwosu</h5></a>
+                            <span class="font-size-d-sm">Web Developer</span>
                         </div>
                     </div>
                 </div>
@@ -1030,13 +1030,13 @@
 
             <div class="tab-content text-center mb-md-11 mb-8 w-xl-75 mx-auto" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends.Programs are available in fall, spring, and summer semesters. Many fall and spring programs offer similar shorter programs in the summer, and some may be combined for a full academic year.“</p>
+                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ JPC Academy changed my career. I started the Python course with no coding experience and within six months I was working remotely as a junior developer. The tutors explain everything in simple terms, and paying in Naira made it affordable for me.“</p>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends.Programs are available in fall, spring, and summer semesters. Many fall and spring programs offer similar shorter programs in the summer, and some may be combined for a full academic year. “</p>
+                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ JPC Academy changed my career. I started the Python course with no coding experience and within six months I was working remotely as a junior developer. The tutors explain everything in simple terms, and paying in Naira made it affordable for me. “</p>
                 </div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends.Programs are available in fall, spring, and summer semesters. Many fall and spring programs offer similar shorter programs in the summer, and some may be combined for a full academic year. “</p>
+                    <p class="mb-0 text-capitalize h4 text-gray-800 fw-normal">“ JPC Academy changed my career. I started the Python course with no coding experience and within six months I was working remotely as a junior developer. The tutors explain everything in simple terms, and paying in Naira made it affordable for me. “</p>
                 </div>
             </div>
 
@@ -1054,8 +1054,8 @@
 
                                 <div class="col">
                                     <div class="card-body p-0 ms-5">
-                                        <h5 class="mb-0">Albert Cole</h5>
-                                        <span class="text-gray-800">Designer</span>
+                                        <h5 class="mb-0">Tunde Adeyemi</h5>
+                                        <span class="text-gray-800">Product Designer</span>
                                     </div>
                                 </div>
                             </div>
@@ -1075,8 +1075,8 @@
 
                                 <div class="col">
                                     <div class="card-body p-0 ms-5">
-                                        <h5 class="mb-0">Alison Dawn</h5>
-                                        <span class="text-gray-800">WordPress Developer</span>
+                                        <h5 class="mb-0">Ngozi Obi</h5>
+                                        <span class="text-gray-800">Data Analyst</span>
                                     </div>
                                 </div>
                             </div>
@@ -1096,8 +1096,8 @@
 
                                 <div class="col">
                                     <div class="card-body p-0 ms-5">
-                                        <h5 class="mb-0">Daniel Parker</h5>
-                                        <span class="text-gray-800">Front-end Developer</span>
+                                        <h5 class="mb-0">Segun Alabi</h5>
+                                        <span class="text-gray-800">Software Engineer</span>
                                     </div>
                                 </div>
                             </div>
@@ -1123,7 +1123,7 @@
             <div class="row w-xl-96 mx-xl-auto text-center">
                 <div class="col-md-3 mb-6 mb-md-0">
                     <div class="h1"><span data-toggle="countup" data-from="0" data-to="749" data-aos data-aos-id="countup:in"></span></div>
-                    <p class="font-size-lg fw-medium mb-0">Creative Events</p>
+                    <p class="font-size-lg fw-medium mb-0">Students Graduated</p>
                 </div>
 
                 <div class="col-md-3 mb-6 mb-md-0">
@@ -1138,7 +1138,7 @@
 
                 <div class="col-md-3 mb-6 mb-md-0">
                     <div class="h1"><span data-toggle="countup" data-from="0" data-to="53" data-aos="" data-aos-id="countup:in"></span>k+</div>
-                    <p class="font-size-lg fw-medium mb-0">People Worldwide</p>
+                    <p class="font-size-lg fw-medium mb-0">Nigerian Students</p>
                 </div>
             </div>
         </div>
@@ -1156,25 +1156,25 @@
                             <div class="mb-3 h2 text-dodger">
                                 <i class="fab fa-twitter"></i>
                             </div>
-                            <a href="#" class="">@Skola</a>
-                            <p class="mb-2">Getting the necessary clarity about the current state to help you improve your game.</p>
-                            <span class="text-primary font-size-sm">06 April 2020</span>
+                            <a href="{% url 'contact-us' %}" class="">@JPC Academy</a>
+                            <p class="mb-2">New cohort starting this month! Learn React and build real projects with our tutors.</p>
+                            <span class="text-primary font-size-sm">15 August 2026</span>
                         </div>
 
                         <div class="col-12 mb-4 px-2">
                             <div class="mb-3 h2 text-dodger">
                                 <i class="fab fa-twitter"></i>
                             </div>
-                            <a href="#" class="">@Skola</a>
-                            <p class="mb-2">Getting the necessary clarity about the current state to help you improve your game.</p>
-                            <span class="text-primary font-size-sm">06 April 2020</span>
+                            <a href="{% url 'contact-us' %}" class="">@JPC Academy</a>
+                            <p class="mb-2">New cohort starting this month! Learn React and build real projects with our tutors.</p>
+                            <span class="text-primary font-size-sm">15 August 2026</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <h3 class="text-center mb-4">Subscribe our newsletter</h3>
-                    <p class="mb-5 mx-xl-10 text-center">Your download should start automatically, if not  Click here. Should I give up, huh?.</p>
+                    <h3 class="text-center mb-4">Subscribe to our newsletter</h3>
+                    <p class="mb-5 mx-xl-10 text-center">Get course updates, new launches and career tips delivered to your inbox.</p>
                     <div class="mx-xl-8">
                         <form>
                             <div class="input-group">

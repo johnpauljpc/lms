@@ -10,16 +10,16 @@
     ================================================== -->
     <header class="py-8 py-md-11" style="background-image: none;">
         <div class="container text-center py-xl-2">
-            <h1 class="display-4 fw-semi-bold mb-0">About Us v1</h1>
+            <h1 class="display-4 fw-semi-bold mb-0">About Us</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-scroll justify-content-center">
                     <li class="breadcrumb-item">
-                        <a class="text-gray-800" href="#">
+                        <a class="text-gray-800" href="{% url 'home' %}">
                             Home
                         </a>
                     </li>
                     <li class="breadcrumb-item text-gray-800 active" aria-current="page">
-                        About Us v1
+                        About Us
                     </li>
                 </ol>
             </nav>
@@ -38,14 +38,14 @@
             <p class="font-size-lg mb-5 text-capitalize">Discover your perfect program in our courses.</p>
 
             <p class="w-xl-80 mx-auto line-height-md">
-                Convallis vitae, nunc ut venenatis, lectus. Tellus nunc orci dolor nec facilisis et lacus, eu aliquet. Amet imperdiet ac venenatis, lacus. Tortor interdum quisque et, eu etiam ac. Hac lectus at posuere est consequat euismod tellus ut. Dolor ut diam sed dignissim eget gravida. Lectus mattis hac vitae, sed quis vel ornare sed. Ut vel cursus sed id eu. Laoreet bibendum eget dui sapien bibendum sapien.
+                JPC Academy started with one mission: to make world-class digital skills affordable and accessible to every Nigerian. From our base in Lagos, we have helped thousands of students — from Lagos to Kano, Port Harcourt to Abuja — learn coding, design, data and business skills that land them jobs and opportunities. Our tutors are practicing professionals who teach with real-world projects, and our courses are priced in Naira for the Nigerian learner.
             </p>
         </div>
 
         <!-- VIDEO
         ================================================== -->
         <div class="mb-8">
-            <div class="py-12 py-md-14 bg-cover rounded text-center" style="background-image: url(assets/img/covers/cover-2.jpg);">
+            <div class="py-12 py-md-14 bg-cover rounded text-center" style="background-image: url({% static 'assets/img/covers/cover-2.jpg' %});">
                 <!-- Button -->
                 <a href="https://www.youtube.com/watch?v=9I-Y6VQ6tyI" class="btn h-90p w-90p rounded-circle btn-white size-30-all d-inline-flex align-items-center justify-content-center shadow lift text-dark" data-fancybox>
                     <!-- Icon -->
@@ -63,7 +63,7 @@
             <div class="row text-center">
                 <div class="col-md-3 mb-6 mb-md-0">
                     <div class="h1 mb-1"><span data-toggle="countup" data-from="0" data-to="749" data-aos data-aos-id="countup:in"></span></div>
-                    <p class="font-size-lg fw-medium mb-0">Creative Events</p>
+                    <p class="font-size-lg fw-medium mb-0">Students Graduated</p>
                 </div>
 
                 <div class="col-md-3 mb-6 mb-md-0">
@@ -78,7 +78,7 @@
 
                 <div class="col-md-3 mb-6 mb-md-0">
                     <div class="h1 mb-1"><span data-toggle="countup" data-from="0" data-to="53" data-aos="" data-aos-id="countup:in"></span>k+</div>
-                    <p class="font-size-lg fw-medium mb-0">People Worldwide</p>
+                    <p class="font-size-lg fw-medium mb-0">Nigerian Students</p>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
     <section class="py-5 pt-md-11 pb-md-10 bg-light text-center">
         <div class="container">
             <div class="mb-md-8 mb-4">
-                <h1>Why Study With Skola</h1>
+                <h1>Why Study With JPC Academy</h1>
                 <p class="font-size-lg mb-0 text-capitalize">Discover your perfect program in our courses.</p>
             </div>
 
@@ -113,7 +113,7 @@
                     </div>
 
                     <h4 class="mb-1">Learn Anything</h4>
-                    <p class="px-lg-7 px-xl-8">Sed cursus turpis vitae tortor donec eaque ipsa quaeab illo.</p>
+                    <p class="px-lg-7 px-xl-8">Learn any skill you want — from Python to UI design — taught in clear, practical lessons.</p>
                 </div>
 
                 <div class="col-md-4 mb-4 mb-md-0">
@@ -128,7 +128,7 @@
                     </div>
 
                     <h4 class="mb-1">Flexible Learning</h4>
-                    <p class="px-lg-7 px-xl-8">Sed cursus turpis vitae tortor donec eaque ipsa quaeab illo.</p>
+                    <p class="px-lg-7 px-xl-8">Learn any skill you want — from Python to UI design — taught in clear, practical lessons.</p>
                 </div>
 
                 <div class="col-md-4 mb-4 mb-md-0">
@@ -145,7 +145,7 @@
                     </div>
 
                     <h4 class="mb-1">Learn With Experts</h4>
-                    <p class="px-lg-7 px-xl-8">Sed cursus turpis vitae tortor donec eaque ipsa quaeab illo.</p>
+                    <p class="px-lg-7 px-xl-8">Learn any skill you want — from Python to UI design — taught in clear, practical lessons.</p>
                 </div>
             </div>
         </div>
@@ -175,17 +175,17 @@
                             </div>
 
                             <div class="avatar avatar-custom mb-5">
-                                <img src="assets/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-1.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mb-0">Albert Cole</h5>
-                                <span>Designer</span>
+                                <h5 class="mb-0">Tunde Adeyemi</h5>
+                                <span>Product Designer</span>
                             </div>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-0 pb-0 pt-4">
-                            <p class="mb-0 text-capitalize">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>
+                            <p class="mb-0 text-capitalize">“ JPC Academy helped me transition from a complete beginner to a working developer. The tutors are patient, the lessons are practical, and paying in Naira made it easy. “</p>
                         </div>
                     </div>
                 </div>
@@ -204,17 +204,17 @@
                             </div>
 
                             <div class="avatar avatar-custom mb-5">
-                                <img src="assets/img/avatars/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-2.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mb-0">Alison Dawn</h5>
-                                <span>WordPress Developer</span>
+                                <h5 class="mb-0">Ngozi Obi</h5>
+                                <span>Data Analyst</span>
                             </div>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-0 pb-0 pt-4">
-                            <p class="mb-0 text-capitalize">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>
+                            <p class="mb-0 text-capitalize">“ JPC Academy helped me transition from a complete beginner to a working developer. The tutors are patient, the lessons are practical, and paying in Naira made it easy. “</p>
                         </div>
                     </div>
                 </div>
@@ -233,17 +233,17 @@
                             </div>
 
                             <div class="avatar avatar-custom mb-5">
-                                <img src="assets/img/avatars/avatar-3.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-3.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mb-0">Daniel Parker</h5>
-                                <span>Front-end Developer</span>
+                                <h5 class="mb-0">Segun Alabi</h5>
+                                <span>Software Engineer</span>
                             </div>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-0 pb-0 pt-4">
-                            <p class="mb-0 text-capitalize">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>
+                            <p class="mb-0 text-capitalize">“ JPC Academy helped me transition from a complete beginner to a working developer. The tutors are patient, the lessons are practical, and paying in Naira made it easy. “</p>
                         </div>
                     </div>
                 </div>
@@ -262,17 +262,17 @@
                             </div>
 
                             <div class="avatar avatar-custom mb-5">
-                                <img src="assets/img/avatars/avatar-4.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img src="{% static 'assets/img/avatars/avatar-4.jpg' %}" alt="..." class="avatar-img rounded-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mb-0">Albert Cole</h5>
-                                <span>Designer</span>
+                                <h5 class="mb-0">Tunde Adeyemi</h5>
+                                <span>Product Designer</span>
                             </div>
                         </div>
 
                         <!-- Footer -->
                         <div class="card-footer px-0 pb-0 pt-4">
-                            <p class="mb-0 text-capitalize">“ I believe in lifelong learning and Skola is a great place to learn from experts. I've learned a lot and recommend it to all my friends “</p>
+                            <p class="mb-0 text-capitalize">“ JPC Academy helped me transition from a complete beginner to a working developer. The tutors are patient, the lessons are practical, and paying in Naira made it easy. “</p>
                         </div>
                     </div>
                 </div>
@@ -463,12 +463,12 @@
 
     <!-- CALL ACTION
     ================================================== -->
-    <section class="py-6 py-md-11 border-top" data-jarallax data-speed=".8" style="background-image: url(assets/img/illustrations/illustration-1.jpg)">
+    <section class="py-6 py-md-11 border-top" data-jarallax data-speed=".8" style="background-image: url({% static 'assets/img/illustrations/illustration-1.jpg' %})">
         <div class="container text-center py-xl-4">
             <div class="row">
                 <div class="col-xl-7 mx-auto">
-                    <h1 class="text-capitalize">Subscribe our newsletter</h1>
-                    <p class="text-capitalize font-size-lg mb-md-6 mb-4">Your download should start automatically, if not Click here. Should I give up, huh?.</p>
+                    <h1 class="text-capitalize">Subscribe to our newsletter</h1>
+                    <p class="text-capitalize font-size-lg mb-md-6 mb-4">Get new course alerts, career tips and exclusive offers straight to your inbox.</p>
                     <div class="mx-md-8">
                         <form>
                             <div class="input-group">
