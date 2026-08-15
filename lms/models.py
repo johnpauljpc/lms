@@ -7,14 +7,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Categories(models.Model):
-    icon = models.CharField(max_length=200,null=True)
+    icon = models.CharField(max_length=200, null=True)
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
-    
-    def get_all_categories(self):
-        return Categories.objects.all().order_by('id')
+
+    @classmethod
+    def get_all_categories(cls):
+        return cls.objects.all().order_by('id')
 
 
 
@@ -97,8 +98,9 @@ class things_you_wil_learn(models.Model):
 
     def __str__(self) -> str:
         return self.points
+
     class Meta:
-        verbose_name_plural = "things you wil learn"
+        verbose_name_plural = "things you will learn"
     
 
 class Course_Requirements(models.Model):
@@ -107,9 +109,9 @@ class Course_Requirements(models.Model):
 
     def __str__(self) -> str:
         return self.points
-    
+
     class Meta:
-        verbose_name_plural = "Course Requirement"
+        verbose_name_plural = "Course Requirements"
 
 
 

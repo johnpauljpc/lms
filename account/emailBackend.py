@@ -4,42 +4,28 @@ from django.db.models import Q
 
 UserModel = get_user_model()
 
-# class EmailBackend(ModelBackend):
-#     """
-#     Authenticates against settings.AUTH_USER_MODEL.
-#     """
-
-#     def authenticate(self, request, username=None, password=None, **kwargs):
-#         try:
-#             user = UserModel.objects.get(Q(username__iexact = username) | Q(email__iexact = username) )
-#         except UserModel.DoesNotExist:
-#             UserModel().set_password(password)
-#             return
-#         except UserModel.MultipleObjectsReturned:
-#             user = UserModel.objects.get(Q(username__iexact = username) | Q(email__iexact = username) ).order_by('id').first()
-
-#         if user.check_password(password) and self.user_can_authenticate(user):
-#             return user
-
 
 class EmailBackend(ModelBackend):
     """
-    Authenticates against settings.AUTH_USER_MODEL.
+    Authenticates against settings.AUTH_USER_MODEL using either the
+    username or the email address (case-insensitive).
     """
 
-    def authenticate(self,  username=None, password=None, **kwargs):
+    def authenticate(self, request=None, username=None, password=None, **kwargs):
+        if username is None or password is None:
+            return None
         try:
-            user = UserModel.objects.get(Q(username__iexact = username) | Q(email__iexact = username) )
+            user = UserModel.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
         except UserModel.DoesNotExist:
-            # UserModel().set_password(password)
+            UserModel().set_password(password)
             return None
         except UserModel.MultipleObjectsReturned:
-            user = UserModel.objects.get(Q(username__iexact = username) | Q(email__iexact = username) ).order_by('id').first()
+            user = UserModel.objects.filter(
+                Q(username__iexact=username) | Q(email__iexact=username)
+            ).order_by('id').first()
 
-        else:
-            if user.check_password(password): #and self.user_can_authenticate(user):
-                return user
-            
+        if user.check_password(password) and self.user_can_authenticate(user):
+            return user
         return None
 
 

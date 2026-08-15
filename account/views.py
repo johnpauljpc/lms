@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from .emailBackend import EmailBackend
-# from django.contrib.auth.forms import PasswordResetForm,
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseNotAllowed
+from django.utils.http import url_has_allowed_host_and_scheme
 from .forms import passwordResetForm, changePasswordForm
 from django.db.models import Q
 # Create your views here.
@@ -18,70 +21,77 @@ from .tokens import account_activation_token
 
 
 def registrationView(request):
-    # user = User.objects.all()
+    if request.user.is_authenticated:
+        return redirect('home')
 
     if request.method == 'POST':
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        email = request.POST['email']
-        username = request.POST['username']
-        print('**************===========================')
-        print(request.POST)
+        password1 = request.POST.get('password1', '')
+        password2 = request.POST.get('password2', '')
+        email = request.POST.get('email', '').strip()
+        username = request.POST.get('username', '').strip()
 
-        #check if username exists
-        if User.objects.filter(username = username).exists():
+        # check if username exists
+        if User.objects.filter(username=username).exists():
             messages.warning(request, f"the username <b>{username}</b> already exists!")
             return redirect('register')
-        #check if email already exists
-
-        if User.objects.filter(email = email ).exists():
+        # check if email already exists
+        if User.objects.filter(email=email).exists():
             messages.warning(request, f'the email: <b>{email}</b> has been taken already!')
             return redirect('register')
-        
+
         if password1 != password2:
             messages.info(request, 'password does not match')
             return redirect('register')
 
-        user = User.objects.create_user(username = username, email = email)
-        user.set_password(password1)
-        user.save()
-        messages.success(request, f'welcome  <b>{user.username}! You can now login')
+        try:
+            validate_password(password1)
+        except ValidationError as errors:
+            for error in errors:
+                messages.error(request, error)
+            return redirect('register')
+
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        messages.success(request, f'welcome <b>{user.username}</b>! You can now login')
         return redirect('login')
-      
 
     return render(request, 'accounts/register.html')
 
 
 def loginView(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
 
-        user = EmailBackend.authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
             # redirecting to the previous page if any
-            if 'next' in request.POST:
-                
-                return redirect(request.POST.get('next'))
-            else: 
-                messages.info(request, f"welcome {user}")
-                return redirect('home')
-    
-    if request.GET.get('next'):
-            messages.info(request, f'To continue, please <b>login</b>!')
+            next_url = request.POST.get('next')
+            if next_url and url_has_allowed_host_and_scheme(
+                next_url, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+            ):
+                return redirect(next_url)
+            messages.info(request, f"welcome {user}")
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid username, email or password')
+            return redirect('login')
 
-    
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.GET.get('next'):
+        messages.info(request, 'To continue, please <b>login</b>!')
 
     return render(request, 'accounts/login.html')
 
+
 def logoutView(request):
-    if (request.method == 'POST' or request.method == 'GET'):
-        logout(request)
-        messages.info(request, 'You have logged out')
-        return redirect('home')
-    messages.info(request, 'You have NOT logged out')
-    return redirect('/')
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+    logout(request)
+    messages.info(request, 'You have logged out')
+    return redirect('home')
 
 
 def resetPassword(request):
@@ -117,14 +127,11 @@ def resetPassword(request):
                     return redirect('reset-password-done')
                 else:
                     messages.error(request, "Problem sending reset password email, <b>SERVER PROBLEM</b>")
-            messages.warning(request, f"{user_email} is not assosciated to any registered User")
-            return redirect('/')
-        
+            messages.warning(request, f"{user_email} is not associated to any registered User")
+            return redirect('reset-password')
 
-        for key, error in list(form.errors.items()):
-            messages.error(request,  error)
-            if key == 'captcha' and error[0] == 'This field is required.':
-                messages.error(request, "You must pass the reCAPTCHA test")
+        for error in form.errors.as_data().values():
+            messages.error(request, error[0].messages[0])
                 
         
                 
@@ -144,7 +151,7 @@ def passwordResetConfirmation(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except:
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
@@ -164,40 +171,37 @@ def passwordResetConfirmation(request, uidb64, token):
         }
         return render(request, 'accounts/password_reset_confirm.html', context)
     else:
-        messages.error(request, "Link is expired")
-
-    messages.error(request, 'Something went wrong, redirecting back to Homepage')
-    return redirect("/")
+        messages.error(request, "The reset link is invalid or has expired.")
+        return redirect('reset-password')
 
 
 def resetPasswordDone(request):
-    return render (request, "accounts/password_reset_done.html")
-def resetPasswordConfirm(request):
-    pass
+    return render(request, "accounts/password_reset_done.html")
 
 
-def resetPasswordComplete(request):
-    pass
-
-
+@login_required(login_url='login')
 def profile(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user_id = request.user.id
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
+        password = request.POST.get('password', '')
 
-        user = User.objects.get(id=user_id)
+        user = request.user
         user.first_name = first_name
         user.last_name = last_name
-        user.username = username
-        user.email = email
 
-        if password != None and password != "":
+        if password:
+            try:
+                validate_password(password, user=user)
+            except ValidationError as errors:
+                for error in errors:
+                    messages.error(request, error)
+                return redirect('profile')
             user.set_password(password)
+
         user.save()
-        messages.success(request,'Profile Are Successfully Updated. ')
+        if password:
+            update_session_auth_hash(request, user)
+        messages.success(request, 'Profile successfully updated.')
         return redirect('profile')
     return render(request, "accounts/profile.html")

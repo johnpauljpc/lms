@@ -4,7 +4,7 @@ from .models import (Categories, Course, Level, Video,
 
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from django.db.models import Q, Sum 
+from django.db.models import Q, Sum
 from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,202 +12,162 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
+
 def index(request):
-    categories = Categories.objects.all().order_by('-id')
-    courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')[:8]
-    
+    courses = Course.objects.filter(status='PUBLISH').order_by('-id')[:8]
     context = {
-        'categories':categories,
-        'courses':courses
+        'courses': courses
     }
-    
     return render(request, "lms/index.html", context)
 
 
 def Courses(request):
-    categories = Categories.get_all_categories(Categories)
     level = Level.objects.all()
-    courses = Course.objects.filter(status = 'PUBLISH').order_by('-id')
-    freeCourses = Course.objects.filter(price = 0).count()
-    paidCourses = Course.objects.filter(price__gte = 1)
-    print('paidCourses >>>>>>>>>>>>>>>>> ', paidCourses)
-    
-    context = {
-        'categories':categories,
-        'level':level,
-        'courses':courses,
-        'freeCourses':freeCourses,
-        'paidCourses': paidCourses
-        
+    courses = Course.objects.filter(status='PUBLISH').order_by('-id')
+    freeCourses = Course.objects.filter(status='PUBLISH', price=0).count()
+    paidCourses = Course.objects.filter(status='PUBLISH', price__gte=1)
 
+    context = {
+        'level': level,
+        'courses': courses,
+        'freeCourses': freeCourses,
+        'paidCourses': paidCourses,
+        'number_courses': courses.count(),
     }
-    
+
     return render(request, "lms/single_course.html", context)
 
+
 def courseDetail(request, slug):
-   course = Course.objects.filter(slug=slug)
-   categories = Categories.get_all_categories(Categories)
-   time_duration = Video.objects.filter(course__slug = slug).aggregate(sum = Sum('duration'))
-   sum_of_author_courses = Course.objects.filter(slug = slug).count()  # sum_of_author_courses = Author.objects.filter(author = course.author).aggregate(sum = Sum())
-   
-   # check is user is enrolled
-   course_id = Course.objects.get(slug=slug)
-   if request.user.is_authenticated:
-      try:
-         Enrolled = UserCourse.objects.get(user = request.user, course = course_id)
-      except UserCourse.DoesNotExist:
-         Enrolled = None
-   else:
-      Enrolled = None
+    course = Course.objects.filter(slug=slug, status='PUBLISH')
+    if not course.exists():
+        return redirect('404')
+    course = course.first()
 
-   if course.exists():
-      course = course.first()
-   else:
-      return redirect('404')
-   context = {
-      'course':course,
-      'categories':categories,
-      'time_duration':time_duration,
-      'sum_of_author_courses': sum_of_author_courses,
-      'Enrolled':Enrolled
-   }
-   
-   return render(request, 'lms/course-details.html', context)
+    time_duration = Video.objects.filter(course=course).aggregate(sum=Sum('duration'))
+    sum_of_author_courses = Course.objects.filter(author=course.author, status='PUBLISH').count()
 
+    # check is user is enrolled
+    if request.user.is_authenticated:
+        try:
+            Enrolled = UserCourse.objects.get(user=request.user, course=course)
+        except UserCourse.DoesNotExist:
+            Enrolled = None
+    else:
+        Enrolled = None
+
+    context = {
+        'course': course,
+        'time_duration': time_duration,
+        'sum_of_author_courses': sum_of_author_courses,
+        'Enrolled': Enrolled,
+    }
+
+    return render(request, 'lms/course-details.html', context)
 
 
 def contactUs(request):
-    categories = Categories.get_all_categories(Categories)
-    context = {
-       'categories':categories,
-    }
-    return render(request, 'lms/contact_us.html', context)
+    return render(request, 'lms/contact_us.html')
 
 
 def aboutUs(request):
-    categories = Categories.get_all_categories(Categories)
-    context = {
-       'categories':categories,
-    }
-    return render(request, 'lms/about-us.html', context)
+    return render(request, 'lms/about-us.html')
 
 
 def filter_data(request):
     categories = request.GET.getlist('category[]')
     level = request.GET.getlist('level[]')
     price = request.GET.getlist('price[]')
-    print(f'LEVELS>>>>>>>> {level}')
 
+    courses = Course.objects.filter(status='PUBLISH')
 
-    if price == ['priceFree']:
-       course = Course.objects.filter(price=0)
-      
-    elif price == ['pricePaid']:
-       course = Course.objects.filter(price__gte=1)
-    elif price == ['priceAll']:
-       course = Course.objects.all()
-    elif categories:
-       course = Course.objects.filter(category__id__in=categories).order_by('-id')
-    elif level:
-       course = Course.objects.filter(level__id__in = level).order_by('-id')
-    else:
-       course = Course.objects.all().order_by('-id')
+    if price and price != ['priceAll']:
+        if 'priceFree' in price:
+            courses = courses.filter(price=0)
+        if 'pricePaid' in price:
+            courses = courses.filter(price__gte=1)
+        if not {'priceFree', 'pricePaid'} & set(price):
+            courses = courses.filter(price__gte=0)
 
-    number_courses = course.count()
-    print (">>>>>>>>>>>>>>   ", number_courses)
-    t = render_to_string('ajax/course.html', context = {'course': course, 'number_courses':number_courses})
+    if categories:
+        courses = courses.filter(category__id__in=categories)
+    if level:
+        courses = courses.filter(level__id__in=level)
+
+    courses = courses.order_by('-id')
+    number_courses = courses.count()
+    t = render_to_string('ajax/course.html', context={'course': courses, 'number_courses': number_courses})
 
     return JsonResponse({'data': t})
-   
+
 
 def searchField(request):
-   q = request.GET['search-query']
-   categories = Categories.get_all_categories(Categories)
-   
-   courses = Course.objects.filter(Q(title__icontains=q)|Q(description__icontains=q) | Q(category__name__icontains=q))
-   print('>>>>>>>>>>>>>>>>>>>>> SS  ', courses)
-   context = {'query': q, 'courses':courses, 'categories':categories}
-   return render(request, 'search/search.html', context=context)
-#  return redirect(request.META.get("HTTP_REFERER", "/")
+    q = request.GET.get('search-query', '').strip()
+    courses = Course.objects.filter(status='PUBLISH').filter(
+        Q(title__icontains=q) | Q(description__icontains=q) | Q(category__name__icontains=q)
+    )
+    context = {'query': q, 'courses': courses}
+    return render(request, 'search/search.html', context=context)
+
 
 def pageNotFound(request):
-   categories = Categories.get_all_categories(Categories)
-   context = {
-       'categories':categories,
-    }
-   return render(request, 'error/404.html', context)
+    return render(request, 'error/404.html')
 
 
 @login_required(login_url='login')
 def CheckoutView(request, slug):
-   course = Course.objects.get(slug=slug)
+    try:
+        course = Course.objects.get(slug=slug)
+    except Course.DoesNotExist:
+        return redirect('404')
 
-   if course.price == 0:
-      usercourse = UserCourse(
-         user = request.user,
-         course = course
-      )
-      usercourse.save()
-      messages.success(request, f"<b>{course}</b> successfully enrolled")
-      return redirect('my-courses')
-   
-   course_id = Course.objects.get(slug = slug)
-   try:
-      enroll_status = UserCourse.objects.get(user = request.user, course = course_id)
-      if enroll_status is not None:
-         messages.info(request, f"You have enrolled on <b>{course_id.title}</b> already!")
-         return redirect('my-courses')
-   
-   except UserCourse.DoesNotExist:
-      enroll_status = None
-   return render(request, 'lms/checkout.html')
+    if course.price == 0:
+        _, created = UserCourse.objects.get_or_create(user=request.user, course=course)
+        if created:
+            messages.success(request, f"<b>{course}</b> successfully enrolled")
+        else:
+            messages.info(request, f"You have already enrolled on <b>{course.title}</b>!")
+        return redirect('my-courses')
+
+    if UserCourse.objects.filter(user=request.user, course=course).exists():
+        messages.info(request, f"You have enrolled on <b>{course.title}</b> already!")
+        return redirect('my-courses')
+
+    context = {
+        'course': course,
+    }
+    return render(request, 'lms/checkout.html', context)
 
 
-   
-# def CheckoutView(request, slug):
-#       return render(request, 'lms/checkout.html')
+class MyCourses(LoginRequiredMixin, View):
+    login_url = 'login'
 
-class MyCourses(View):
-   
-   def get(self, request):
-      course = UserCourse.objects.filter(user__id = request.user.id)
-      context = {
-         'courses':course
-      }
-      
-      return render (request, 'lms/my-courses.html', context=context)
-   
-   def post(self, request):
-      return render (request, 'lms/my-courses.html')
+    def get(self, request):
+        courses = UserCourse.objects.filter(user=request.user).select_related('course', 'course__author', 'course__category')
+        context = {
+            'courses': courses
+        }
+        return render(request, 'lms/my-courses.html', context=context)
 
+
+@login_required(login_url='login')
 def Watch_Course(request, slug):
-   # lecture = request.GET.get('lecture')
-   # print('>>>>>>>>>>>>>>>>>>>>                ', lecture)
-   course_id = Course.objects.get(slug = slug)
-   course = Course.objects.filter(slug = slug)
-   lecture = request.GET.get('lecture')
-   video = Video.objects.filter(id = lecture).first()
-   print(">>>>>>>>>>>>>>>>>>> ")
-   print(lecture)
+    try:
+        course = Course.objects.get(slug=slug)
+    except Course.DoesNotExist:
+        return redirect('404')
 
-   try:
-      check_enroll  = UserCourse.objects.get(user = request.user, course = course_id)
-      # video = Video.objects.get(id = lecture)
+    if not UserCourse.objects.filter(user=request.user, course=course).exists():
+        return redirect('404')
 
-      if course.exists():
-         course = course.first()
-      else:
-         return redirect('404')
-   except UserCourse.DoesNotExist:
-      return redirect('404')
-   
+    lecture = request.GET.get('lecture')
+    video = Video.objects.filter(id=lecture, course=course).first()
+    if video is None:
+        video = Video.objects.filter(course=course).order_by('serial_number', 'id').first()
 
-   context = {
-      # 'lecture': lecture,
-      'course': course,
-      'video': video
-   }
-   print(context)
-   
-   
-   return render(request, 'course/watch-course.html', context)
+    context = {
+        'course': course,
+        'video': video,
+    }
+
+    return render(request, 'course/watch-course.html', context)
