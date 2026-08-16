@@ -15,7 +15,7 @@ A full-featured **Django Learning Management System** built for Nigerian learner
 ## Tech Stack
 
 - Python / Django 6
-- SQLite (default)
+- SQLite by default, PostgreSQL optional via `DATABASE_URL`
 - Bootstrap 5 + custom theme (HTML/CSS/JS)
 - Pillow (image handling)
 
@@ -60,4 +60,5 @@ website/    - project config & settings
 ## Notes
 
 - Sensitive settings are read from environment variables (`DJANGO_SECRET_KEY`, `DJANGO_DEBUG`, `DJANGO_ALLOWED_HOSTS`, `EMAIL_*`).
+- **Database**: SQLite is used out of the box. To use PostgreSQL in production, install the driver (`pip install psycopg[binary]`) and set the `DATABASE_URL` env var, e.g. `DATABASE_URL=postgres://user:pass@host:5432/dbname`.
 - Media uploads (course images, videos, author profiles) are stored under `media/`.
