@@ -117,7 +117,7 @@
                 <ul class="list-group list-group-flush mb-4">
                     <li class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="payment_whatsapp" checked>
+                            <input class="form-check-input" type="radio" name="payment_method" id="payment_whatsapp" data-label="WhatsApp" checked>
                             <label class="form-check-label" for="payment_whatsapp">
                                 Pay via WhatsApp
                                 <span class="badge badge-sm bg-teal ms-2">Recommended</span>
@@ -129,7 +129,7 @@
                     </li>
                     <li class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="payment_bank">
+                            <input class="form-check-input" type="radio" name="payment_method" id="payment_bank" data-label="Bank Transfer">
                             <label class="form-check-label" for="payment_bank">Bank Transfer</label>
                         </div>
                         <div class="payment-info d-none" id="info_bank">
@@ -139,7 +139,7 @@
                     </li>
                     <li class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="payment_paystack">
+                            <input class="form-check-input" type="radio" name="payment_method" id="payment_paystack" data-label="Paystack">
                             <label class="form-check-label" for="payment_paystack">
                                 Paystack (Card, Transfer, USSD)
                                 <span class="badge badge-sm bg-secondary ms-2">Coming soon</span>
@@ -168,14 +168,14 @@
 <script>
 (function () {
     var phone = '2348012345678';
-    var courseTitle = {{ course.title|escapejs }};
+    var courseTitle = '{{ course.title|escapejs }}';
     var sellPrice = '{% if course.price == 0 %}Free{% else %}{% discount_calculation course.price course.discount as sp %}{{ sp|naira }}{% endif %}';
 
     function buildMessage() {
         var first = document.getElementById('first_name') ? document.getElementById('first_name').value : '';
         var last = document.getElementById('last_name') ? document.getElementById('last_name').value : '';
         var method = document.querySelector('input[name="payment_method"]:checked');
-        var label = method ? method.nextElementSibling.textContent.trim() : 'WhatsApp';
+        var label = method ? method.getAttribute('data-label') : 'WhatsApp';
         var text = 'Hello JPC Academy! I want to enroll for the course "' + courseTitle + '" (' + sellPrice + ').%0AMy name is ' + first + ' ' + last + '.%0APayment method: ' + encodeURIComponent(label);
         return 'https://wa.me/' + phone + '?text=' + text;
     }
