@@ -117,8 +117,14 @@
                 <ul class="list-group list-group-flush mb-4">
                     <li class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="payment_paystack" checked>
-                            <label class="form-check-label" for="payment_paystack">Paystack (Card, Transfer, USSD)</label>
+                            <input class="form-check-input" type="radio" name="payment_method" id="payment_whatsapp" checked>
+                            <label class="form-check-label" for="payment_whatsapp">
+                                Pay via WhatsApp
+                                <span class="badge badge-sm bg-teal ms-2">Recommended</span>
+                            </label>
+                        </div>
+                        <div class="payment-info" id="info_whatsapp">
+                            <p class="font-size-sm mb-0 mt-2">Complete your order on WhatsApp. We confirm your payment and enroll you within minutes.</p>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -126,18 +132,27 @@
                             <input class="form-check-input" type="radio" name="payment_method" id="payment_bank">
                             <label class="form-check-label" for="payment_bank">Bank Transfer</label>
                         </div>
-                        <p class="font-size-sm mb-0 mt-2">JPC Academy<br>GTBank<br>Account No: 0123456789</p>
+                        <div class="payment-info d-none" id="info_bank">
+                            <p class="font-size-sm mb-1 mt-2">JPC Academy<br>GTBank<br>Account No: <strong>0123456789</strong></p>
+                            <p class="font-size-sm mb-0">After transfer, tap Complete Purchase to send your payment proof on WhatsApp.</p>
+                        </div>
                     </li>
                     <li class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method" id="payment_whatsapp">
-                            <label class="form-check-label" for="payment_whatsapp">Pay via WhatsApp</label>
+                            <input class="form-check-input" type="radio" name="payment_method" id="payment_paystack">
+                            <label class="form-check-label" for="payment_paystack">
+                                Paystack (Card, Transfer, USSD)
+                                <span class="badge badge-sm bg-secondary ms-2">Coming soon</span>
+                            </label>
+                        </div>
+                        <div class="payment-info d-none" id="info_paystack">
+                            <p class="font-size-sm mb-0 mt-2">Card payments are on the way. Please use WhatsApp or Bank Transfer for now.</p>
                         </div>
                     </li>
                 </ul>
 
                 <div class="d-grid gap-2">
-                    <a href="{% url 'contact-us' %}" class="btn btn-primary">
+                    <a href="{% url 'contact-us' %}" class="btn btn-primary" id="complete_purchase_btn" target="_blank" rel="noopener">
                         COMPLETE PURCHASE
                     </a>
                     <a href="{% url 'course-detail' course.slug %}" class="btn btn-light">
@@ -149,5 +164,46 @@
         </div>
     </div>
 </div>
+
+<script>
+(function () {
+    var phone = '2348012345678';
+    var courseTitle = {{ course.title|escapejs }};
+    var sellPrice = '{% if course.price == 0 %}Free{% else %}{% discount_calculation course.price course.discount as sp %}{{ sp|naira }}{% endif %}';
+
+    function buildMessage() {
+        var first = document.getElementById('first_name') ? document.getElementById('first_name').value : '';
+        var last = document.getElementById('last_name') ? document.getElementById('last_name').value : '';
+        var method = document.querySelector('input[name="payment_method"]:checked');
+        var label = method ? method.nextElementSibling.textContent.trim() : 'WhatsApp';
+        var text = 'Hello JPC Academy! I want to enroll for the course "' + courseTitle + '" (' + sellPrice + ').%0AMy name is ' + first + ' ' + last + '.%0APayment method: ' + encodeURIComponent(label);
+        return 'https://wa.me/' + phone + '?text=' + text;
+    }
+
+    var btn = document.getElementById('complete_purchase_btn');
+    btn.href = buildMessage();
+
+    document.querySelectorAll('input[name="payment_method"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            document.querySelectorAll('.payment-info').forEach(function (el) {
+                el.classList.add('d-none');
+            });
+            var info = document.getElementById('info_' + this.id.replace('payment_', ''));
+            if (info) {
+                info.classList.remove('d-none');
+            }
+            if (this.id === 'payment_paystack') {
+                btn.classList.add('disabled');
+                btn.removeAttribute('href');
+                btn.textContent = 'COMING SOON';
+            } else {
+                btn.classList.remove('disabled');
+                btn.href = buildMessage();
+                btn.textContent = 'COMPLETE PURCHASE';
+            }
+        });
+    });
+})();
+</script>
 
 {% endblock content %}
