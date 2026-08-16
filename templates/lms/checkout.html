@@ -133,7 +133,7 @@
                             <label class="form-check-label" for="payment_bank">Bank Transfer</label>
                         </div>
                         <div class="payment-info d-none" id="info_bank">
-                            <p class="font-size-sm mb-1 mt-2">JPC Academy<br>GTBank<br>Account No: <strong>0123456789</strong></p>
+                            <p class="font-size-sm mb-1 mt-2">ClassPro<br>GTBank<br>Account No: <strong>0123456789</strong></p>
                             <p class="font-size-sm mb-0">After transfer, tap Complete Purchase to send your payment proof on WhatsApp.</p>
                         </div>
                     </li>
@@ -176,7 +176,7 @@
         var last = document.getElementById('last_name') ? document.getElementById('last_name').value : '';
         var method = document.querySelector('input[name="payment_method"]:checked');
         var label = method ? method.getAttribute('data-label') : 'WhatsApp';
-        var text = 'Hello JPC Academy! I want to enroll for the course "' + courseTitle + '" (' + sellPrice + ').%0AMy name is ' + first + ' ' + last + '.%0APayment method: ' + encodeURIComponent(label);
+        var text = 'Hello ClassPro! I want to enroll for the course "' + courseTitle + '" (' + sellPrice + ').%0AMy name is ' + first + ' ' + last + '.%0APayment method: ' + encodeURIComponent(label);
         return 'https://wa.me/' + phone + '?text=' + text;
     }
 

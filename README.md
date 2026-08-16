@@ -1,4 +1,4 @@
-# JPC Academy - Learning Management System
+# ClassPro - Learning Management System
 
 A full-featured **Django Learning Management System** built for Nigerian learners, with course enrollment, video lessons, Naira pricing and secure authentication.
 
